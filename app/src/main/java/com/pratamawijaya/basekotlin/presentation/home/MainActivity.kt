@@ -1,10 +1,12 @@
-package com.pratamawijaya.basekotlin
+package com.pratamawijaya.basekotlin.presentation.home
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.pratamawijaya.basekotlin.R
+import com.pratamawijaya.basekotlin.di.component.ActivityComponent
+import com.pratamawijaya.basekotlin.presentation.base.BaseInjectedActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseInjectedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +30,9 @@ class MainActivity : AppCompatActivity() {
                 .take(4)
                 .map { Log.d("debug", "$it") }
 
+    }
+
+    override fun injectModule(activityComponent: ActivityComponent) {
+        activityComponent.inject(this)
     }
 }

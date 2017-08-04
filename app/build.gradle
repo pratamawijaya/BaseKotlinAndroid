@@ -54,6 +54,10 @@ android {
     }
 }
 
+configurations {
+    ktlint
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -88,9 +92,25 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
     kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
 
+    ktlint 'com.github.shyiko:ktlint:0.8.1'
     testCompile 'junit:junit:4.12'
 }
+
 repositories {
     mavenCentral()
+}
+
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
 }
 
