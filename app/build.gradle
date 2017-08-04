@@ -1,22 +1,56 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'org.moallemi.advanced-build-version'
+
+advancedVersioning {
+    nameOptions {
+        versionMajor 0
+        versionMinor 1
+        versionPatch 0
+        versionBuild 0
+    }
+    codeOptions {
+        versionCodeType org.moallemi.gradle.internal.VersionCodeType.AUTO_INCREMENT_ONE_STEP
+    }
+    outputOptions {
+        renameOutput true
+        nameFormat '${appName}-${buildType}-${versionName}'
+    }
+}
+
+def appVersionName = advancedVersioning.versionName
+def appVersionCode = advancedVersioning.versionCode
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         applicationId "com.pratamawijaya.basekotlin"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        File secretsExists = new File("secrets.properties")
+        if (secretsExists.exists()) {
+            def secretsFile = rootProject.file('secrets.properties')
+            def secrets = new Properties()
+            secrets.load(new FileInputStream(secretsFile))
+            buildConfigField "String", "API_URL", secrets.getProperty('API_URL')
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
     }
 }
 
@@ -25,12 +59,38 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:appcompat-v7:' + rootProject.supportVersion
+    compile 'com.android.support.constraint:constraint-layout:' + rootProject.constraintVersion
+    compile 'com.github.ajalt:timberkt:' + rootProject.timberVersion
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-commons:$anko_version"
+    compile 'com.jakewharton:butterknife:' + rootProject.butterknifeVersion
+
+    compile "com.google.dagger:dagger:" + rootProject.daggerVersion
+    compile 'com.google.dagger:dagger-android:' + rootProject.daggerVersion
+    compile 'com.google.dagger:dagger-android-support:' + rootProject.daggerVersion
+
+    compile 'com.intuit.sdp:sdp-android:' + rootProject.sdpVersion
+    compile 'com.intuit.ssp:ssp-android:' + rootProject.sdpVersion
+
+    compile 'com.squareup.picasso:picasso:' + rootProject.picassoVersion
+
+    compile 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
+    compile 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
+    compile 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.retrofitVersion
+    compile 'com.squareup.okhttp3:logging-interceptor:' + rootProject.okHttpVersion
+
+    compile 'io.reactivex.rxjava2:rxandroid:' + rootProject.rxAndroidVersion
+    compile 'io.reactivex.rxjava2:rxkotlin:' + rootProject.rxJavaVersion
+
+    kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
+    kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
+    kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
+
+    testCompile 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()
 }
+
