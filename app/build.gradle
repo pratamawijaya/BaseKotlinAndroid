@@ -52,6 +52,8 @@ android {
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
     }
+
+    dataBinding.enabled true
 }
 
 configurations {
@@ -88,6 +90,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:' + rootProject.rxAndroidVersion
     compile 'io.reactivex.rxjava2:rxkotlin:' + rootProject.rxJavaVersion
 
+    compile 'com.github.nitrico.lastadapter:lastadapter:' + rootProject.lastAdapterVersion
+
+    kapt 'com.android.databinding:compiler:2.3.3'
     kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
     kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
     kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
