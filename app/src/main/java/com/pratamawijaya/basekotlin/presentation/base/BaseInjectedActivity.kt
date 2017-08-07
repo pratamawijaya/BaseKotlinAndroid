@@ -17,8 +17,7 @@ abstract class BaseInjectedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        unbinder = ButterKnife.bind(this)
+        ButterKnife.bind(this)
 
         val activityComponent = BaseApp.get(this)
                 .appComponent

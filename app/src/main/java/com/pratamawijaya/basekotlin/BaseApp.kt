@@ -6,6 +6,7 @@ import com.pratamawijaya.basekotlin.di.component.AppComponent
 import com.pratamawijaya.basekotlin.di.component.DaggerAppComponent
 import com.pratamawijaya.basekotlin.di.module.AppModule
 import com.pratamawijaya.basekotlin.di.module.DataModule
+import timber.log.Timber
 
 /**
  * Created by pratama on 8/4/17.
@@ -25,5 +26,9 @@ class BaseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        if(BuildConfig.DEBUG){
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
