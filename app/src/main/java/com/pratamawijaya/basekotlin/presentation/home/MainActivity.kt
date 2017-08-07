@@ -2,6 +2,8 @@ package com.pratamawijaya.basekotlin.presentation.home
 
 import android.os.Bundle
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.github.ajalt.timberkt.d
 import com.pratamawijaya.basekotlin.R
 import com.pratamawijaya.basekotlin.di.component.ActivityComponent
@@ -14,13 +16,13 @@ class MainActivity : BaseInjectedActivity(), MainView {
     @Inject
     lateinit var presenter: MainPresenter
 
+    @BindView(R.id.txtHeroes)
     lateinit var tvHeroes: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        tvHeroes = findViewById(R.id.txtHeroes)
+        ButterKnife.bind(this)
 
         presenter.attachView(this)
         presenter.getHeroes()
