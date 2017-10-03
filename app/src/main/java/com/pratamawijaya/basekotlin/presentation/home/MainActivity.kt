@@ -58,6 +58,7 @@ class MainActivity : BaseInjectedActivity(), MainView {
         heroes.map {
             d { "heroes ${it.localName} ${it.id}" }
             tvHeroes.append("${it.localName} ${it.id} \n")
+            d { "heroes image ${it.heroesImage}" }
         }
     }
 }

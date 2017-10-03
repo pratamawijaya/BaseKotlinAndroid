@@ -7,4 +7,6 @@ data class Hero(val id: Int,
                 val name: String,
                 val localName: String,
                 val primaryAttr: String,
-                val legs: Int)
+                val legs: Int,
+                val roles: List<String>?,
+                val heroesImage: String = "")

@@ -10,7 +10,7 @@ data class HeroModel(
         val attackType: String? = null,
 
         @field:SerializedName("roles")
-        val roles: List<String?>? = null,
+        val roles: List<String>? = null,
 
         @field:SerializedName("legs")
         val legs: Int? = null,
