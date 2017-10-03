@@ -63,6 +63,7 @@ dependencies {
     androidTestImplementation androidTestsLibs
 
     implementation supportLibs
+    implementation "com.android.support:cardview-v7:26.1.0"
     implementation networkLibs
     implementation rxJavaLibs
     implementation daggerLibs

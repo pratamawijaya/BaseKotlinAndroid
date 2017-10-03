@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hero"
+            type="com.pratamawijaya.basekotlin.entity.Hero" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/heroImage"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:scaleType="centerCrop"
+                app:loadUrl="@{hero.heroesImage}" />
+
+            <TextView
+                android:id="@+id/heroName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_toRightOf="@id/heroImage"
+                android:fontFamily="@font/architects_daughter"
+                android:text="@{hero.localName}"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                tools:text="Anti Mage" />
+
+            <TextView
+                android:id="@+id/heroType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/heroName"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_toRightOf="@id/heroImage"
+                android:fontFamily="@font/architects_daughter"
+                android:text="@{hero.attackType}"
+                tools:text="Primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/heroName"
+                android:layout_toRightOf="@id/heroType"
+                android:fontFamily="@font/architects_daughter"
+                android:text="@{hero.primaryAttr}"
+                tools:text="Melee" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>

@@ -9,4 +9,5 @@ data class Hero(val id: Int,
                 val primaryAttr: String,
                 val legs: Int,
                 val roles: List<String>?,
+                val attackType:String,
                 val heroesImage: String = "")

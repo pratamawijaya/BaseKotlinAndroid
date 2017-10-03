@@ -1,10 +1,14 @@
 package com.pratamawijaya.basekotlin.presentation.home
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.github.ajalt.timberkt.d
+import com.github.nitrico.lastadapter.LastAdapter
+import com.pratamawijaya.basekotlin.BR
 import com.pratamawijaya.basekotlin.R
 import com.pratamawijaya.basekotlin.di.component.ActivityComponent
 import com.pratamawijaya.basekotlin.entity.Hero
@@ -16,17 +20,23 @@ class MainActivity : BaseInjectedActivity(), MainView {
     @Inject
     lateinit var presenter: MainPresenter
 
-    @BindView(R.id.txtHeroes)
-    lateinit var tvHeroes: TextView
+    @BindView(R.id.rvMain)
+    lateinit var rvMain: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
 
+        setupRecyclerView()
+
         presenter.attachView(this)
         presenter.getHeroes()
 
+    }
+
+    private fun setupRecyclerView() {
+        rvMain.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onStart() {
@@ -55,10 +65,15 @@ class MainActivity : BaseInjectedActivity(), MainView {
     }
 
     override fun displayHeroes(heroes: List<Hero>) {
+
+        LastAdapter(heroes, BR.hero)
+                .map<Hero>(R.layout.item_heroes)
+                .into(rvMain)
+
         heroes.map {
             d { "heroes ${it.localName} ${it.id}" }
-            tvHeroes.append("${it.localName} ${it.id} \n")
             d { "heroes image ${it.heroesImage}" }
+            d { "heroes role ${it.roles.toString()}" }
         }
     }
 }

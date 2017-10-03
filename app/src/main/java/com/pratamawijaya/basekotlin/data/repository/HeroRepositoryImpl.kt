@@ -14,7 +14,7 @@ class HeroRepositoryImpl @Inject constructor(val services: OpenDotaServices) : H
         return services.getHeroes()
                 .flatMap { Observable.fromIterable(it) }
                 .map {
-                    val heroesName = it.name?.replace("npc_dota_hero_","")
+                    val heroesName = it.name?.replace("npc_dota_hero_", "")
                     val heroesImage = "http://cdn.dota2.com/apps/dota2/images/heroes/$heroesName" + "_full.png"
                     Hero(id = it.id ?: 0,
                             name = it.name ?: "",
@@ -22,6 +22,7 @@ class HeroRepositoryImpl @Inject constructor(val services: OpenDotaServices) : H
                             primaryAttr = it.primaryAttr ?: "",
                             legs = it.legs ?: 0,
                             roles = it.roles,
+                            attackType = it.attackType ?: "",
                             heroesImage = heroesImage)
                 }
                 .toList()
