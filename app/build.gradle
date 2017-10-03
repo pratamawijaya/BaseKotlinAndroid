@@ -29,12 +29,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
     }
-
     dataBinding.enabled true
+
+    // for android studio 3, need flavorDimension
+    // see : https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html?utm_source=android-studio#variant_aware
+    flavorDimensions 'stage'
+
+    productFlavors {
+        development {
+            dimension 'stage'
+            versionNameSuffix 'dev'
+        }
+        production {
+            dimension 'stage'
+        }
+    }
 }
 
 configurations {
@@ -42,42 +54,33 @@ configurations {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile 'com.android.support:appcompat-v7:' + rootProject.supportVersion
     compile 'com.android.support.constraint:constraint-layout:' + rootProject.constraintVersion
     compile 'com.github.ajalt:timberkt:' + rootProject.timberVersion
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-commons:$anko_version"
     compile 'com.jakewharton:butterknife:' + rootProject.butterknifeVersion
-
     compile "com.google.dagger:dagger:" + rootProject.daggerVersion
     compile 'com.google.dagger:dagger-android:' + rootProject.daggerVersion
     compile 'com.google.dagger:dagger-android-support:' + rootProject.daggerVersion
-
     compile 'com.intuit.sdp:sdp-android:' + rootProject.sdpVersion
     compile 'com.intuit.ssp:ssp-android:' + rootProject.sdpVersion
-
     compile 'com.squareup.picasso:picasso:' + rootProject.picassoVersion
-
     compile 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
     compile 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
     compile 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.retrofitVersion
     compile 'com.squareup.okhttp3:logging-interceptor:' + rootProject.okHttpVersion
-
     compile 'io.reactivex.rxjava2:rxandroid:' + rootProject.rxAndroidVersion
     compile 'io.reactivex.rxjava2:rxkotlin:' + rootProject.rxJavaVersion
-
     compile 'com.github.nitrico.lastadapter:lastadapter:' + rootProject.lastAdapterVersion
-
     kapt 'com.android.databinding:compiler:2.3.3'
     kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
     kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
     kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
-
     ktlint 'com.github.shyiko:ktlint:0.8.1'
     testCompile 'junit:junit:4.12'
 }
