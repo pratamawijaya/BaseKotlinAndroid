@@ -1,0 +1,93 @@
+// androidstarter ways
+ext {
+    versions = [
+            support       : "26.1.0",
+            constraint    : "1.0.2",
+            firebase      : '10.2.0',
+            okHttp        : "3.8.0",
+            retrofit      : '2.3.0',
+            espresso      : '2.2.2',
+            espressoRunner: '0.5',
+            powerMock     : '1.6.6',
+            hamcrest      : '1.3',
+            restMock      : '0.2.0',
+            dagger        : '2.11',
+            butterKnife   : '8.7.0',
+            sdp           : '1.0.4'
+    ]
+
+    mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
+    junit = [junit: "junit:junit:4.12"]
+    restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
+
+    supportDeps = [
+            appcompatV7: "com.android.support:appcompat-v7:$versions.support",
+            design     : "com.android.support:design:$versions.support",
+            constraint : "com.android.support.constraint:constraint-layout:$versions.constraint"
+    ]
+
+    rxJava = [
+            rxKotlin : 'io.reactivex.rxjava2:rxkotlin:2.1.0',
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:2.0.1"
+    ]
+
+    retrofit = [
+            retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+//            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:1.1.1"
+    ]
+
+    dagger = [
+            dagger              : "com.google.dagger:dagger:$versions.dagger",
+            daggerAndroid       : "com.google.dagger:dagger-android:$versions.dagger",
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:$versions.dagger"
+    ]
+
+    okHttp = [
+            logger: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            okhttp: "com.squareup.okhttp3:okhttp:$versions.okHttp"
+    ]
+
+    unitTest = [
+            harcrestCore       : "org.hamcrest:hamcrest-core:$versions.hamcrest",
+            harmcrestLib       : "org.hamcrest:hamcrest-library:$versions.hamcrest",
+            hamcrestIntegration: "org.hamcrest:hamcrest-integration:$versions.hamcrest",
+            robolectric        : "org.robolectric:robolectric:3.2.2",
+            supportAnnotation  : "com.android.support:support-annotations:$versions.support",
+            restMock           : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
+            assertj            : "com.squareup.assertj:assertj-android:1.1.1"
+    ] + junit + mockito + restMock
+
+    androidTests = [
+            espressoCore   : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+            espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+            espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+            testRunner     : "com.android.support.test:runner:$versions.espressoRunner",
+            testRules      : "com.android.support.test:rules:$versions.espressoRunner",
+    ] + mockito + restMock
+
+    googlePlay = [
+            maps             : "com.google.android.gms:play-services-maps:$versions.firebase",
+            crash            : "com.google.firebase:firebase-crash:$versions.firebase",
+            firebaseCore     : "com.google.firebase:firebase-core:$versions.firebase",
+            firebaseMessaging: "com.google.firebase:firebase-messaging:$versions.firebase"
+    ]
+
+    dimensionDep = [
+            sdp: "com.intuit.sdp:sdp-android:$versions.sdp",
+            ssp: "com.intuit.ssp:ssp-android:$versions.sdp"
+    ]
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values() + okHttp.values()
+    rxJavaLibs = rxJava.values()
+    daggerLibs = dagger.values()
+    googlePlayLibs = googlePlay.values()
+    unitTestLibs = unitTest.values()
+    androidTestsLibs = androidTests.values() + supportLibs
+    dimensionLibs = dimensionDep.values()
+
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+}

@@ -24,6 +24,9 @@ class MainPresenter @Inject constructor(val repo: HeroRepository) : BasePresente
         super.detachView()
     }
 
+    /**
+     * get dota 2 heroes list
+     */
     fun getHeroes() {
         compositeSub.add(repo.getHeroes()
                 .subscribeOn(Schedulers.io())
