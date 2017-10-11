@@ -2,6 +2,7 @@ package com.pratamawijaya.basekotlin.presentation.home
 
 import com.github.ajalt.timberkt.d
 import com.github.ajalt.timberkt.e
+import com.pratamawijaya.basekotlin.data.PreferencesManager
 import com.pratamawijaya.basekotlin.data.repository.HeroRepository
 import com.pratamawijaya.basekotlin.presentation.base.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,22 +13,18 @@ import javax.inject.Inject
 /**
  * Created by pratama on 8/7/17.
  */
-class MainPresenter @Inject constructor(val repo: HeroRepository) : BasePresenter<MainView>() {
+class MainPresenter @Inject constructor(private val repo: HeroRepository,
+                                        private val preferencesManager: PreferencesManager) : BasePresenter<MainView>() {
 
     private var compositeSub = CompositeDisposable()
-
-    override fun attachView(mView: MainView) {
-        super.attachView(mView)
-    }
-
-    override fun detachView() {
-        super.detachView()
-    }
 
     /**
      * get dota 2 heroes list
      */
     fun getHeroes() {
+
+        preferencesManager.setUserLogin(true)
+
         compositeSub.add(repo.getHeroes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

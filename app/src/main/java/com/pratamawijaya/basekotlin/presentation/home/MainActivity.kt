@@ -10,6 +10,7 @@ import com.github.ajalt.timberkt.d
 import com.github.nitrico.lastadapter.LastAdapter
 import com.pratamawijaya.basekotlin.BR
 import com.pratamawijaya.basekotlin.R
+import com.pratamawijaya.basekotlin.data.PreferencesManager
 import com.pratamawijaya.basekotlin.di.component.ActivityComponent
 import com.pratamawijaya.basekotlin.entity.Hero
 import com.pratamawijaya.basekotlin.presentation.base.BaseInjectedActivity
@@ -19,6 +20,8 @@ class MainActivity : BaseInjectedActivity(), MainView {
 
     @Inject
     lateinit var presenter: MainPresenter
+    @Inject
+    lateinit var prefManager: PreferencesManager
 
     @BindView(R.id.rvMain)
     lateinit var rvMain: RecyclerView
@@ -32,6 +35,8 @@ class MainActivity : BaseInjectedActivity(), MainView {
 
         presenter.attachView(this)
         presenter.getHeroes()
+
+        prefManager.saveString(PreferencesManager.PREF_USERNAME, "hello")
 
     }
 

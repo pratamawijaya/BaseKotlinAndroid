@@ -63,16 +63,18 @@ apply from: 'dependencies.gradle'
 
 // see dependencies.gradle for setup library
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
 
     implementation supportLibs
-    implementation "com.android.support:cardview-v7:26.1.0"
     implementation networkLibs
     implementation rxJavaLibs
     implementation daggerLibs
+
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
     implementation 'com.github.ajalt:timberkt:' + rootProject.timberVersion
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -110,3 +112,5 @@ task ktlintFormat(type: JavaExec) {
     args "-F", "src/**/*.kt"
 }
 
+
+apply plugin: 'kotlin-android-extensions'
