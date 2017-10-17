@@ -30,35 +30,24 @@ class AppModule(val app: Application) {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
-        val gson = GsonBuilder()
-                .setDateFormat("yyyy-MM-dd")
-                .create()
-        return gson
-    }
+    fun provideGson(): Gson = GsonBuilder().setDateFormat("yyyy-MM-dd").create()
 
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val okHttp = OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-
-        return okHttp.build()
+        return OkHttpClient.Builder()
+                .addNetworkInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
+                .build()
     }
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build()
-        return retrofit
     }
 }
