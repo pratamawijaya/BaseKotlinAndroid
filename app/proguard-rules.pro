@@ -23,3 +23,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontwarn com.squareup.picasso.**
+-dontwarn com.google.errorprone.annotations.*
+-dontwarn okio.**
+-dontwarn retrofit2.**
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
