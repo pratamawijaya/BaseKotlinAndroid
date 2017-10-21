@@ -2,6 +2,7 @@ package com.pratamawijaya.basekotlin
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.pratamawijaya.basekotlin.di.component.AppComponent
 import com.pratamawijaya.basekotlin.di.component.DaggerAppComponent
 import com.pratamawijaya.basekotlin.di.module.AppModule
@@ -27,8 +28,24 @@ class BaseApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        } else {
+            Timber.plant(CrashlyticsTree())
         }
+    }
+
+    class CrashlyticsTree : Timber.Tree() {
+
+        override fun isLoggable(tag: String?, priority: Int): Boolean = priority >= Log.ERROR
+
+        override fun log(priority: Int, tag: String?, message: String?, throwable: Throwable?) {
+//            Crashlytics.log(priority, tag, message)
+
+            if (throwable != null) {
+//                Crashlytics.logException(throwable)
+            }
+        }
+
     }
 }
