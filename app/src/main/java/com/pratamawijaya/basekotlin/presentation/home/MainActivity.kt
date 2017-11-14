@@ -3,7 +3,7 @@ package com.pratamawijaya.basekotlin.presentation.home
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.TextView
+import android.support.v7.widget.Toolbar
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.github.ajalt.timberkt.d
@@ -25,11 +25,14 @@ class MainActivity : BaseInjectedActivity(), MainView {
 
     @BindView(R.id.rvMain)
     lateinit var rvMain: RecyclerView
+    @BindView(R.id.toolbar)
+    lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
+        setSupportActionBar(toolbar)
 
         setupRecyclerView()
 

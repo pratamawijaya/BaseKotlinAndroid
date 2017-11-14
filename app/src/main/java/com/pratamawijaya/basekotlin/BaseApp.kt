@@ -30,7 +30,7 @@ class BaseApp : Application() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(LinkingDebugTree())
+            Timber.plant(Timber.DebugTree())
         } else {
             Timber.plant(CrashlyticsTree())
         }

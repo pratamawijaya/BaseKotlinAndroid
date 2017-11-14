@@ -35,9 +35,12 @@ class AppModule(val app: Application) {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-                .addNetworkInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
-                .build()
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val okHttp = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+        return okHttp.build()
     }
 
     @Provides
