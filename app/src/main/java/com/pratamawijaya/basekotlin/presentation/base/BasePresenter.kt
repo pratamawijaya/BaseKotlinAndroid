@@ -6,7 +6,6 @@ import io.reactivex.disposables.CompositeDisposable
 /**
  * Created by pratama
  * Date : Jul - 7/6/17
- * Project Name : QontakCom
  */
 open class BasePresenter<T : BaseView> : Presenter<T> {
 
