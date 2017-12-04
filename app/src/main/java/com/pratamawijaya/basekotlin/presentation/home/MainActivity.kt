@@ -1,9 +1,11 @@
 package com.pratamawijaya.basekotlin.presentation.home
 
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.widget.ProgressBar
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.github.ajalt.timberkt.d
@@ -16,10 +18,12 @@ import com.pratamawijaya.basekotlin.databinding.ItemHeroesBinding
 import com.pratamawijaya.basekotlin.di.component.ActivityComponent
 import com.pratamawijaya.basekotlin.entity.Hero
 import com.pratamawijaya.basekotlin.presentation.base.BaseInjectedActivity
+import com.pratamawijaya.basekotlin.presentation.utils.toGone
+import com.pratamawijaya.basekotlin.presentation.utils.toVisible
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class MainActivity : BaseInjectedActivity(), MainView {
+class MainActivity : BaseInjectedActivity(), MainView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     lateinit var presenter: MainPresenter
@@ -30,6 +34,10 @@ class MainActivity : BaseInjectedActivity(), MainView {
     lateinit var rvMain: RecyclerView
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
+    @BindView(R.id.content)
+    lateinit var content: SwipeRefreshLayout
+    @BindView(R.id.loader)
+    lateinit var loadingView: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +51,7 @@ class MainActivity : BaseInjectedActivity(), MainView {
         presenter.getHeroes()
 
         prefManager.saveString(PreferencesManager.PREF_USERNAME, "hello")
-
+        content.setOnRefreshListener(this)
     }
 
     private fun setupRecyclerView() {
@@ -75,6 +83,16 @@ class MainActivity : BaseInjectedActivity(), MainView {
         activityComponent.inject(this)
     }
 
+    override fun showLoading() {
+        content.toGone()
+        loadingView.toVisible()
+    }
+
+    override fun hideLoading() {
+        content.toVisible()
+        loadingView.toGone()
+    }
+
     override fun displayHeroes(heroes: List<Hero>) {
 
         LastAdapter(heroes, BR.hero)
@@ -88,5 +106,10 @@ class MainActivity : BaseInjectedActivity(), MainView {
             d { "heroes image ${it.heroesImage}" }
             d { "heroes role ${it.roles.toString()}" }
         }
+    }
+
+    override fun onRefresh() {
+        content.isRefreshing = false
+        presenter.getHeroes()
     }
 }

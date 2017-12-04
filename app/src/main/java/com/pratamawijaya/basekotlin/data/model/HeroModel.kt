@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 data class HeroModel(
         @field:SerializedName("primary_attr")
-        val primaryAttr: String? = null,
+        val primaryAttr: String = "",
 
         @field:SerializedName("attack_type")
-        val attackType: String? = null,
+        val attackType: String = "",
 
         @field:SerializedName("roles")
         val roles: List<String>? = null,
 
         @field:SerializedName("legs")
-        val legs: Int? = null,
+        val legs: Int = 0,
 
         @field:SerializedName("name")
-        val name: String? = null,
+        val name: String = "",
 
         @field:SerializedName("id")
-        val id: Int? = null,
+        val id: Int = 0,
 
         @field:SerializedName("localized_name")
-        val localizedName: String? = null
+        val localizedName: String = ""
 )

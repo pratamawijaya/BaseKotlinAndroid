@@ -18,14 +18,16 @@ class MainPresenter @Inject constructor(private val repo: HeroRepository,
      * get dota 2 heroes list
      */
     fun getHeroes() {
-
+        mView?.showLoading()
         preferencesManager.setUserLogin(true)
         compositeDisposable.add(repo.getHeroes()
                 .compose(RxUtils.applyObservableAsync())
                 .subscribe({ result ->
+                    mView?.hideLoading()
                     d { "hasilnya adalah" }
                     mView?.displayHeroes(result)
                 }, { error ->
+                    mView?.hideLoading()
                     e { "error ${error.localizedMessage}" }
                 }))
     }

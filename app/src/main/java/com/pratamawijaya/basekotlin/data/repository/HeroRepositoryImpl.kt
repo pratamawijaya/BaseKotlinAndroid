@@ -16,13 +16,13 @@ class HeroRepositoryImpl @Inject constructor(val services: OpenDotaServices) : H
                 .map {
                     val heroesName = it.name?.replace("npc_dota_hero_", "")
                     val heroesImage = "http://cdn.dota2.com/apps/dota2/images/heroes/$heroesName" + "_full.png"
-                    Hero(id = it.id ?: 0,
-                            name = it.name ?: "",
-                            localName = it.localizedName ?: "",
-                            primaryAttr = it.primaryAttr ?: "",
-                            legs = it.legs ?: 0,
+                    Hero(id = it.id,
+                            name = it.name,
+                            localName = it.localizedName,
+                            primaryAttr = it.primaryAttr,
+                            legs = it.legs,
                             roles = it.roles,
-                            attackType = it.attackType ?: "",
+                            attackType = it.attackType,
                             heroesImage = heroesImage)
                 }
                 .toList()
