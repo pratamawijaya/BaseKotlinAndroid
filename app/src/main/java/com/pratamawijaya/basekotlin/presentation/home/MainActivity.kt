@@ -8,12 +8,15 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.github.ajalt.timberkt.d
 import com.github.nitrico.lastadapter.LastAdapter
+import com.github.nitrico.lastadapter.Type
 import com.pratamawijaya.basekotlin.BR
 import com.pratamawijaya.basekotlin.R
 import com.pratamawijaya.basekotlin.data.PreferencesManager
+import com.pratamawijaya.basekotlin.databinding.ItemHeroesBinding
 import com.pratamawijaya.basekotlin.di.component.ActivityComponent
 import com.pratamawijaya.basekotlin.entity.Hero
 import com.pratamawijaya.basekotlin.presentation.base.BaseInjectedActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MainActivity : BaseInjectedActivity(), MainView {
@@ -75,7 +78,9 @@ class MainActivity : BaseInjectedActivity(), MainView {
     override fun displayHeroes(heroes: List<Hero>) {
 
         LastAdapter(heroes, BR.hero)
-                .map<Hero>(R.layout.item_heroes)
+                .map<Hero>(Type<ItemHeroesBinding>(R.layout.item_heroes).onClick {
+                    toast("${it.binding.hero.localName} selected")
+                })
                 .into(rvMain)
 
         heroes.map {

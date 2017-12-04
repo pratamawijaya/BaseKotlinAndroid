@@ -17,4 +17,16 @@ object RxUtils {
         }
     }
 
+    fun <T> applyObservableMainThread(): ObservableTransformer<T, T> {
+        return ObservableTransformer { observable ->
+            observable.observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
+    fun <T> applyObservableCompute(): ObservableTransformer<T, T> {
+        return ObservableTransformer { observable ->
+            observable.subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+        }
+    }
 }
