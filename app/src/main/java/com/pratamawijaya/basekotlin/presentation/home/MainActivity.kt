@@ -97,7 +97,7 @@ class MainActivity : BaseInjectedActivity(), MainView, SwipeRefreshLayout.OnRefr
 
         LastAdapter(heroes, BR.hero)
                 .map<Hero>(Type<ItemHeroesBinding>(R.layout.item_heroes).onClick {
-                    toast("${it.binding.hero.localName} selected")
+                    toast("${it.binding.hero?.localName} selected")
                 })
                 .into(rvMain)
 

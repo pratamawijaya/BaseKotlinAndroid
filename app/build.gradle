@@ -5,7 +5,7 @@ apply plugin: 'com.getkeepsafe.dexcount'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         applicationId "com.pratamawijaya.basekotlin"
@@ -88,7 +88,7 @@ dependencies {
 
     implementation 'com.github.nitrico.lastadapter:lastadapter:' + rootProject.lastAdapterVersion
 
-    kapt 'com.android.databinding:compiler:2.3.3'
+    kapt 'com.android.databinding:compiler:3.0.1'
     kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
     kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
     kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
