@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 
-
 android {
     compileSdkVersion 27
     buildToolsVersion rootProject.buildToolsVersion
@@ -56,8 +55,13 @@ android {
     }
 }
 
-configurations {
-    ktlint
+detekt {
+    version = "1.0.0.RC6-3"
+    profile("main") {
+        input = "$projectDir/src/main/kotlin"
+        config = "$rootDir/detekt.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    }
 }
 
 apply from: 'dependencies.gradle'
@@ -92,26 +96,11 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
     kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
     kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
-    ktlint 'com.github.shyiko:ktlint:0.8.1'
+
 }
 
 repositories {
     mavenCentral()
 }
-
-task ktlint(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "src/**/*.kt"
-}
-
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
-}
-
 
 apply plugin: 'kotlin-android-extensions'

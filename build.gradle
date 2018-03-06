@@ -6,12 +6,17 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.1'
     }
+}
+
+plugins {
+    id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC6-3'
 }
 
 allprojects {
