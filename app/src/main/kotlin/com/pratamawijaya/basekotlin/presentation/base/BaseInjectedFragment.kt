@@ -13,13 +13,16 @@ abstract class BaseInjectedFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val activityComponent = BaseApp.get(activity)
-                .appComponent
-                .activityComponent()
-                .activityModule(ActivityModule(activity))
-                .build()
+        val act = activity
+        if (act != null) {
+            val activityComponent = BaseApp.get(act)
+                    .appComponent.activityComponent()
+                    .activityModule(ActivityModule(act))
+                    .build()
 
-        injectModule(activityComponent)
+            injectModule(activityComponent)
+        }
+
     }
 
     abstract fun injectModule(activityComponent: ActivityComponent)
