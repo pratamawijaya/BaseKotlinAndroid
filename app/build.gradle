@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
 
         File secretsExists = new File("secrets.properties")
         if (secretsExists.exists()) {
