@@ -71,7 +71,7 @@ configurations.all {
         def requested = details.requested
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
-                details.useVersion '26.1.0'
+                details.useVersion '27.1.1'
             }
         } else if (requested.group == "com.google.android.gms") {
             details.useVersion '11.8.0'
@@ -116,7 +116,7 @@ dependencies {
     kapt 'com.android.databinding:compiler:3.0.1'
     kapt "com.google.dagger:dagger-compiler:2.11"
     kapt 'com.google.dagger:dagger-android-processor:2.11'
-    kapt 'com.jakewharton:butterknife-compiler:8.7.0'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 }
 
 repositories {
