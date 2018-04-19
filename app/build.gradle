@@ -4,12 +4,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
+
     defaultConfig {
         applicationId "com.pratamawijaya.basekotlin"
-        minSdkVersion 17
-        targetSdkVersion 26
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.compileSdkVersion
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -66,7 +67,7 @@ detekt {
 }
 
 configurations.all {
-    resolutionStrategy.eachDependency {  DependencyResolveDetails details ->
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
@@ -85,7 +86,7 @@ apply from: 'dependencies.gradle'
 
 // see dependencies.gradle for setup library
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     testImplementation unitTestLibs
@@ -96,23 +97,26 @@ dependencies {
     implementation rxJavaLibs
     implementation daggerLibs
 
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
-    implementation 'com.github.ajalt:timberkt:' + rootProject.timberVersion
+    implementation 'com.xwray:groupie:2.0.3'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.0.3'
+    implementation 'com.xwray:groupie-databinding:2.0.3'
+
+    implementation timberLibs
+    implementation butterKnifeLibs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
-    implementation 'com.jakewharton:butterknife:' + rootProject.butterknifeVersion
 
     implementation dimensionLibs
 
-    implementation 'com.squareup.picasso:picasso:' + rootProject.picassoVersion
-
-    implementation 'com.github.nitrico.lastadapter:lastadapter:' + rootProject.lastAdapterVersion
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.nitrico.lastadapter:lastadapter:2.2.2'
 
     kapt 'com.android.databinding:compiler:3.0.1'
-    kapt "com.google.dagger:dagger-compiler:" + rootProject.daggerVersion
-    kapt 'com.google.dagger:dagger-android-processor:' + rootProject.daggerVersion
-    kapt 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion
+    kapt "com.google.dagger:dagger-compiler:2.11"
+    kapt 'com.google.dagger:dagger-android-processor:2.11'
+    kapt 'com.jakewharton:butterknife-compiler:8.7.0'
 }
 
 repositories {
