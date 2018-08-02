@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.20'
+    ext.kotlin_version = '1.2.60'
     ext.anko_version = '0.10.4'
     repositories {
         google()
@@ -9,9 +9,8 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.1'
     }
 }
 
@@ -34,5 +33,4 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 27
     minSdkVersion = 18
-    buildToolsVersion = "26.0.2"
 }
