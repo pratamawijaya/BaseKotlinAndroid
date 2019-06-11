@@ -1,10 +1,15 @@
 # Base Android Project with Kotlin
+MVVM Base Android Kotlin Project
 
+
+![](ss/ss1.png)
 
 ## Tech Stack
 - Kotlin
-- RxKotlin and RxJava
+- AndroidX
 - Retrofit / OkHttp
 - Gson
-- Dagger 2
-- Timber
+- Groupie as Recyclerview lib
+- sdp ssp
+- Koin as Dependency Injection lib
+- Picasso as Image loader
