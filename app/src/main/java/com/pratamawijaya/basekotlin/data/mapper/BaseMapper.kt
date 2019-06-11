@@ -1,5 +1,6 @@
 package com.pratamawijaya.basekotlin.data.mapper
 
+
 interface BaseMapper<M, D> {
     fun mapToDomain(model: M): D
     fun mapToModel(domain: D): M

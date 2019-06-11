@@ -6,8 +6,10 @@ import com.pratamawijaya.basekotlin.data.repository.NewsRepository
 import com.pratamawijaya.basekotlin.data.repository.NewsRepositoryImpl
 import com.pratamawijaya.basekotlin.data.services.NewsInterceptor
 import com.pratamawijaya.basekotlin.data.services.NewsServices
+import com.pratamawijaya.basekotlin.screens.home.HomeVM
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -17,7 +19,7 @@ import java.util.concurrent.TimeUnit
 val appModule = module {
     single { NewsInterceptor() }
     single { createOkHttpClient(get()) }
-    single { createWebService<NewsServices>(get(), "") }
+    single { createWebService<NewsServices>(get(), "https://newsapi.org/v2/") }
 }
 
 val dataModule = module {
@@ -27,6 +29,9 @@ val dataModule = module {
 
     // mapper
     single { ArticleMapper() }
+
+    // viewmodel
+    viewModel { HomeVM(get()) }
 }
 
 fun createOkHttpClient(interceptor: NewsInterceptor): OkHttpClient {
