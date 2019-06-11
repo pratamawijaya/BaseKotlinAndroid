@@ -10,7 +10,8 @@ class ArticleMapper : BaseMapper<ArticleModel, Article> {
                 title = model.title,
                 author = model.author ?: "",
                 content = model.content ?: "",
-                url = model.url
+                url = model.url,
+                imageUrl = model.urlToImage ?: ""
         )
     }
 
@@ -19,7 +20,8 @@ class ArticleMapper : BaseMapper<ArticleModel, Article> {
                 title = domain.title,
                 url = domain.url,
                 content = domain.content,
-                author = domain.author
+                author = domain.author,
+                urlToImage = domain.imageUrl
         )
     }
 }

@@ -83,6 +83,10 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
     implementation 'com.intuit.ssp:ssp-android:1.0.5'
 
+    implementation 'com.xwray:groupie:2.3.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     // networking
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
