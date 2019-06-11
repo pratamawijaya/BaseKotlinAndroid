@@ -13,3 +13,7 @@ MVVM Base Android Kotlin Project
 - sdp ssp
 - Koin as Dependency Injection lib
 - Picasso as Image loader
+
+## How to use
+
+- Copy secrets.properties.example to secrets.properties and put ur API KEY
