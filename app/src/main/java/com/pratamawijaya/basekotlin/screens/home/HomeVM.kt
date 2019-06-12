@@ -21,25 +21,28 @@ class HomeVM(val repo: NewsRepository) : BaseViewModel() {
     fun getTopHeadlines() {
         homeState.value = LoadingState
 
-        repo.getTopHeadlines()
-                .compose(RxUtils.applySingleAsync())
-                .subscribe({ result ->
-                    d { "result size ${result.size}" }
-                    homeState.value = ArticleLoadedState(result)
-                }, this::onError)
+        compositeDisposable.add(
+                repo.getTopHeadlines()
+                        .compose(RxUtils.applySingleAsync())
+                        .subscribe({ result ->
+                            d { "result size ${result.size}" }
+                            homeState.value = ArticleLoadedState(result)
+                        }, this::onError))
+
     }
 
     fun getEverything(query: String, page: Int) {
         homeState.value = LoadingState
 
-        repo.getEverything(query = query, page = page)
-                .compose(RxUtils.applySingleAsync())
-                .subscribe({ result ->
-//                    listArticle.addAll(result)
-                    homeState.value = ArticleLoadedState(result)
+        compositeDisposable.add(
+                repo.getEverything(query = query, page = page)
+                        .compose(RxUtils.applySingleAsync())
+                        .subscribe({ result ->
+                            //                    listArticle.addAll(result)
+                            homeState.value = ArticleLoadedState(result)
 
-                    d { "article size ${listArticle.size}" }
-                }, this::onError)
+                            d { "article size ${listArticle.size}" }
+                        }, this::onError))
     }
 
     override fun onError(error: Throwable) {
