@@ -7,6 +7,7 @@ MVVM Base Android Kotlin Project
 ## Tech Stack
 - Kotlin
 - AndroidX
+- Rx
 - Retrofit / OkHttp
 - Gson
 - Groupie as Recyclerview lib
