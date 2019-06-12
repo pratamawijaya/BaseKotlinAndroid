@@ -20,5 +20,5 @@ MVVM Base Android Kotlin Project
 - `./gradlew check` for running all
 
 ## How to use
-
+- Register and create your api key here https://newsapi.org/register
 - Copy secrets.properties.example to secrets.properties and put ur API KEY
