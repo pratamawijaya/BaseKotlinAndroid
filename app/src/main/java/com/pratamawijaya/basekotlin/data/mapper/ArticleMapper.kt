@@ -3,7 +3,7 @@ package com.pratamawijaya.basekotlin.data.mapper
 import com.pratamawijaya.basekotlin.data.model.ArticleModel
 import com.pratamawijaya.basekotlin.domain.Article
 
-class ArticleMapper : BaseMapper<ArticleModel, Article> {
+open class ArticleMapper : BaseMapper<ArticleModel, Article> {
 
     override fun mapToDomain(model: ArticleModel): Article {
         return Article(

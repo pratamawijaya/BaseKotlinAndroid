@@ -41,5 +41,4 @@ class ArticleMapperTest {
         assertEquals(articleModel.url, articleDomain.url)
         assertEquals(articleModel.urlToImage, articleDomain.imageUrl)
     }
-
 }

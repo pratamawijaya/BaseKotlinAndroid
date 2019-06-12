@@ -10,7 +10,7 @@ import com.pratamawijaya.basekotlin.shared.RxUtils
 
 sealed class HomeScreenState
 object LoadingState : HomeScreenState()
-data class ErrorState(var msg: String) : HomeScreenState()
+data class ErrorState(var msg: String?) : HomeScreenState()
 data class ArticleLoadedState(val articles: List<Article>) : HomeScreenState()
 
 class HomeVM(val repo: NewsRepository) : BaseViewModel() {

@@ -24,4 +24,20 @@ object ArticleFactory {
                 author = DataFactory.randomString()
         )
     }
+
+    fun makeListArticleModel(): List<ArticleModel> {
+        return listOf(
+                makeArticleModel(),
+                makeArticleModel(),
+                makeArticleModel()
+        )
+    }
+
+    fun makeListArticleDomain(): List<Article>{
+        return listOf(
+                makeArticleDomain(),
+                makeArticleDomain(),
+                makeArticleDomain()
+        )
+    }
 }
