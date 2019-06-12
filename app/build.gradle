@@ -28,6 +28,7 @@ android {
             buildConfigField "String", "API_KEY", secrets.getProperty('API_KEY')
         }
     }
+    
     buildTypes {
         debug {
             testCoverageEnabled true
