@@ -8,8 +8,13 @@ import io.reactivex.Single
 class NewsRepositoryImpl(private val service: NewsServices,
                          private val articleMapper: ArticleMapper) : NewsRepository {
 
-    override fun getArticles(): Single<List<Article>> {
+    override fun getTopHeadlines(): Single<List<Article>> {
         return service.getTopHeadlines("id")
+                .map { articleMapper.mapToListDomain(it.articles) }
+    }
+
+    override fun getEverything(forceUpdate: Boolean, query: String, page: Int): Single<List<Article>> {
+        return service.getEverything(query, page, pageSize = 20)
                 .map { articleMapper.mapToListDomain(it.articles) }
     }
 }

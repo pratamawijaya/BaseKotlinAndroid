@@ -1,6 +1,5 @@
 package com.pratamawijaya.basekotlin.shared.view
 
-import com.github.ajalt.timberkt.d
 import com.pratamawijaya.basekotlin.R
 import com.pratamawijaya.basekotlin.domain.Article
 import com.pratamawijaya.basekotlin.shared.extensions.loadSrc
@@ -14,7 +13,6 @@ class ArticleItemView(private val article: Article) : Item() {
         val imgArticle = viewHolder.itemView.imgArticle
         val titleArticle = viewHolder.itemView.titleArticle
 
-        d { "img ${article.imageUrl}" }
         imgArticle.loadSrc(article.imageUrl)
         titleArticle.text = article.title
     }

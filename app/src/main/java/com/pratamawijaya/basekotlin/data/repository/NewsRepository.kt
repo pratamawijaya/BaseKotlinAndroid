@@ -4,5 +4,6 @@ import com.pratamawijaya.basekotlin.domain.Article
 import io.reactivex.Single
 
 interface NewsRepository {
-    fun getArticles(): Single<List<Article>>
+    fun getTopHeadlines(): Single<List<Article>>
+    fun getEverything(forceUpdate: Boolean = false, query: String, page: Int): Single<List<Article>>
 }

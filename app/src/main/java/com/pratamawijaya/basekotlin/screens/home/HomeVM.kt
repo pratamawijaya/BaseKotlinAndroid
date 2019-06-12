@@ -1,6 +1,7 @@
 package com.pratamawijaya.basekotlin.screens.home
 
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
 import com.github.ajalt.timberkt.d
 import com.github.ajalt.timberkt.e
 import com.pratamawijaya.basekotlin.data.repository.NewsRepository
@@ -16,15 +17,29 @@ data class ArticleLoadedState(val articles: List<Article>) : HomeScreenState()
 class HomeVM(val repo: NewsRepository) : BaseViewModel() {
 
     var homeState = MutableLiveData<HomeScreenState>()
+    var listArticle = mutableListOf<Article>()
 
     fun getTopHeadlines() {
         homeState.value = LoadingState
 
-        repo.getArticles()
+        repo.getTopHeadlines()
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     d { "result size ${result.size}" }
                     homeState.value = ArticleLoadedState(result)
+                }, this::onError)
+    }
+
+    fun getEverything(query: String, page: Int) {
+        homeState.value = LoadingState
+
+        repo.getEverything(query = query, page = page)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+//                    listArticle.addAll(result)
+                    homeState.value = ArticleLoadedState(result)
+
+                    d { "article size ${listArticle.size}" }
                 }, this::onError)
     }
 

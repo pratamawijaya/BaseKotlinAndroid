@@ -13,5 +13,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         startActivity<HomeActivity>()
+        finish()
     }
 }
