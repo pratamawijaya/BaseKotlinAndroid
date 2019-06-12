@@ -18,5 +18,4 @@ class ArticleItemView(private val article: Article) : Item() {
     }
 
     override fun getLayout(): Int = R.layout.layout_item_article
-
 }

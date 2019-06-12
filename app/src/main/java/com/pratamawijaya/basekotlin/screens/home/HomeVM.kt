@@ -1,7 +1,6 @@
 package com.pratamawijaya.basekotlin.screens.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.LivePagedListBuilder
 import com.github.ajalt.timberkt.d
 import com.github.ajalt.timberkt.e
 import com.pratamawijaya.basekotlin.data.repository.NewsRepository
@@ -47,5 +46,4 @@ class HomeVM(val repo: NewsRepository) : BaseViewModel() {
         e { "error ${error.localizedMessage}" }
         homeState.value = ErrorState(error.localizedMessage)
     }
-
 }

@@ -14,6 +14,10 @@ MVVM Base Android Kotlin Project
 - Koin as Dependency Injection lib
 - Picasso as Image loader
 
+## Extra
+- `./gradlew detekt` static analysis with detekt
+- `./gradlew ktlint` kotlin linter
+
 ## How to use
 
 - Copy secrets.properties.example to secrets.properties and put ur API KEY

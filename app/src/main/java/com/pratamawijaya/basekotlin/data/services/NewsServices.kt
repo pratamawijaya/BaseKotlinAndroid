@@ -11,6 +11,5 @@ interface NewsServices {
     fun getTopHeadlines(@Query("country") country: String): Single<TopHeadlineResponse>
 
     @GET("everything")
-    fun getEverything(@Query("q") query: String, @Query("page") page: Int,
-                      @Query("pageSize") pageSize: Int): Single<TopHeadlineResponse>
+    fun getEverything(@Query("q") query: String, @Query("page") page: Int, @Query("pageSize") pageSize: Int): Single<TopHeadlineResponse>
 }

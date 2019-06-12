@@ -5,8 +5,7 @@ import com.pratamawijaya.basekotlin.data.services.NewsServices
 import com.pratamawijaya.basekotlin.domain.Article
 import io.reactivex.Single
 
-class NewsRepositoryImpl(private val service: NewsServices,
-                         private val articleMapper: ArticleMapper) : NewsRepository {
+class NewsRepositoryImpl(private val service: NewsServices, private val articleMapper: ArticleMapper) : NewsRepository {
 
     override fun getTopHeadlines(): Single<List<Article>> {
         return service.getTopHeadlines("id")

@@ -20,8 +20,7 @@ abstract class PaginationScrollListener(private var layoutManager: LinearLayoutM
         val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
         if (!isLoading() && !isLastPage()) {
-            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
-                    && firstVisibleItemPosition >= 0) {
+            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
                 loadMoreItems()
             }
             //                    && totalItemCount >= ClothesFragment.itemsCount

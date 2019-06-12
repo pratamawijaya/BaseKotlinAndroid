@@ -52,15 +52,6 @@ android {
     }
 }
 
-detekt {
-    version = "1.0.0.RC6-3"
-    profile("main") {
-        input = "$projectDir/src/main/kotlin"
-        config = "$rootDir/detekt.yml"
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-    }
-}
-
 // see dependencies.gradle for setup library
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

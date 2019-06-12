@@ -69,15 +69,10 @@ class HomeActivity : AppCompatActivity() {
                     // add loading indicator
                     homeAdapter.add(loadmoreItemView)
                 } else {
-
                 }
-
             }
-
             is ErrorState -> {
-
             }
-
             is ArticleLoadedState -> {
                 if (isLoadMore) {
                     // remove loading indicator
@@ -89,7 +84,6 @@ class HomeActivity : AppCompatActivity() {
                     homeAdapter.add(ArticleItemView(it))
                 }
             }
-
         }
     }
 }
