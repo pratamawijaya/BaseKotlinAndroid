@@ -69,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
                     // add loading indicator
                     homeAdapter.add(loadmoreItemView)
                 } else {
+                    // todo: setup loading state
                 }
             }
             is ErrorState -> {
