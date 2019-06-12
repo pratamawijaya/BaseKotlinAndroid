@@ -1,6 +1,9 @@
+
 # Base Android Project with Kotlin
 MVVM Base Android Kotlin Project
 
+[![Build Status](https://travis-ci.org/pratamawijaya/BaseKotlinAndroid.svg?branch=master)](https://travis-ci.org/pratamawijaya/BaseKotlinAndroid)
+[![codecov](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid/branch/master/graph/badge.svg)](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid)
 
 ![](ss/ss1.png)
 
