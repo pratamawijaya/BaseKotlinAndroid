@@ -1,6 +1,7 @@
 package com.pratamawijaya.basekotlin.screens.base
 
 import androidx.lifecycle.ViewModel
+import com.github.ajalt.timberkt.d
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
@@ -9,6 +10,7 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        d { "vm cleared" }
         compositeDisposable.dispose()
     }
 
