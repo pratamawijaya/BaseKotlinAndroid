@@ -25,10 +25,10 @@ android {
             def secretsFile = rootProject.file('secrets.properties')
             def secrets = new Properties()
             secrets.load(new FileInputStream(secretsFile))
-            buildConfigField "String", "API_KEY", secrets.getProperty('API_KEY')
+            buildConfigField "String", "API_KEY", secrets.getProperty("API_KEY")
         }
     }
-    
+
     buildTypes {
         debug {
             testCoverageEnabled true
