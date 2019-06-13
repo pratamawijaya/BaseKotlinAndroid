@@ -32,7 +32,7 @@ cache:
     - $HOME/.android/build-cache
 
 script:
-  - ./gradlew clean check
+  - ./gradlew clean check jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
