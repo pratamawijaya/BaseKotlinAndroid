@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco-android'
 
 jacoco {
-  toolVersion = "0.8.3"
+    toolVersion = "0.8.3"
 }
 
 android {
@@ -26,6 +27,12 @@ android {
             def secrets = new Properties()
             secrets.load(new FileInputStream(secretsFile))
             buildConfigField "String", "API_KEY", secrets.getProperty("API_KEY")
+        }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
         }
     }
 
@@ -102,6 +109,11 @@ dependencies {
     // logger
     implementation 'com.github.ajalt:timberkt:1.5.0'
 
+    // Room components
+    implementation "androidx.room:room-runtime:2.1.0"
+    implementation "androidx.room:room-rxjava2:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.19.0'
     testImplementation 'android.arch.core:core-testing:1.1.1'
@@ -109,10 +121,12 @@ dependencies {
     testImplementation "org.koin:koin-test:$koin_version"
 
     testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation "androidx.room:room-testing:2.1.0"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 tasks.withType(Test) {
-  jacoco.includeNoLocationClasses = true
+    jacoco.includeNoLocationClasses = true
 }

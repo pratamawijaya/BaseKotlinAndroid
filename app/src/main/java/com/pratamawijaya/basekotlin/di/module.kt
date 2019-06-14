@@ -1,6 +1,8 @@
 package com.pratamawijaya.basekotlin.di
 
+import androidx.room.Room
 import com.google.gson.GsonBuilder
+import com.pratamawijaya.basekotlin.data.database.AppDatabase
 import com.pratamawijaya.basekotlin.data.mapper.ArticleMapper
 import com.pratamawijaya.basekotlin.data.repository.NewsRepository
 import com.pratamawijaya.basekotlin.data.repository.NewsRepositoryImpl
@@ -9,6 +11,7 @@ import com.pratamawijaya.basekotlin.data.services.NewsServices
 import com.pratamawijaya.basekotlin.screens.home.HomeVM
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,12 +23,19 @@ val appModule = module {
     single { NewsInterceptor() }
     single { createOkHttpClient(get()) }
     single { createWebService<NewsServices>(get(), "https://newsapi.org/v2/") }
+
+    single {
+        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "app-database").build()
+    }
 }
 
 val dataModule = module {
 
+    // db dao
+    single { get<AppDatabase>().articleDao() }
+
     // repository
-    single { NewsRepositoryImpl(get(), get()) as NewsRepository }
+    single { NewsRepositoryImpl(get(), get(), get()) as NewsRepository }
 
     // mapper
     single { ArticleMapper() }
