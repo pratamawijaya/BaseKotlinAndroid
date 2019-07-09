@@ -3,6 +3,7 @@ package com.pratamawijaya.basekotlin.di
 import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.pratamawijaya.basekotlin.data.database.AppDatabase
+import com.pratamawijaya.basekotlin.data.database.PreferencesHelper
 import com.pratamawijaya.basekotlin.data.mapper.ArticleMapper
 import com.pratamawijaya.basekotlin.data.repository.NewsRepository
 import com.pratamawijaya.basekotlin.data.repository.NewsRepositoryImpl
@@ -12,6 +13,7 @@ import com.pratamawijaya.basekotlin.screens.home.HomeVM
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,6 +25,7 @@ val appModule = module {
     single { NewsInterceptor() }
     single { createOkHttpClient(get()) }
     single { createWebService<NewsServices>(get(), "https://newsapi.org/v2/") }
+    single { PreferencesHelper(androidContext()) }
 
     single {
         Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "app-database").build()
