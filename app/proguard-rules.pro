@@ -28,6 +28,9 @@
 -dontwarn com.google.errorprone.annotations.*
 -dontwarn okio.**
 -dontwarn retrofit2.**
+
+-keep class com.pratamawijaya.basekotlin.data.model.** { *; }
+-keep class com.pratamawijaya.basekotlin.data.response.** { *; }
 -keepclasseswithmembernames class * {
     native <methods>;
 }
