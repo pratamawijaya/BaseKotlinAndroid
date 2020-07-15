@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         btnNext.setOnClickListener {
-            Navigator.of(this).push(Routes.HomePage)
+            Navigator.of(this).pushReplacement(Routes.HomePage)
         }
     }
 }
