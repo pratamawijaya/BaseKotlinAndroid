@@ -13,6 +13,9 @@ object Versions {
     val androidx_appcompat = "1.1.0"
     val androidx_constraintlayout = "1.1.3"
     val routing_navigator = "1.0.0"
+    val coroutines = "1.3.7"
+    val retrofit = "2.9.0"
+    val logging_interceptor = "4.8.0"
 }
 
 
@@ -23,6 +26,12 @@ object AndroidLib {
     val androidx_constraintlayout =
         "androidx.constraintlayout:constraintlayout:${Versions.androidx_constraintlayout}"
     val routing_navigator = "com.github.florent37:navigator:${Versions.routing_navigator}"
+    val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    val coroutines_android =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    val retrofit_android = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    val okhttp_logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging_interceptor}"
+
 }
 
 object AndroidTestLib {

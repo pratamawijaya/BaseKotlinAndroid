@@ -30,13 +30,13 @@ dependencies {
     implementation project(":core-android")
     implementation project(":routing")
 
-    implementation project(":feature:splash")
-    implementation project(":feature:homepage")
-
     implementation AndroidLib.kotlin_stdlib
     implementation AndroidLib.androidx_core
     implementation AndroidLib.androidx_appcompat
     implementation AndroidLib.androidx_constraintlayout
+
+    implementation AndroidLib.retrofit_android
+    implementation AndroidLib.okhttp_logging
 
     testImplementation AndroidTestLib.junit_lib
     androidTestImplementation AndroidTestLib.android_test_junit

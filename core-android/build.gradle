@@ -31,6 +31,9 @@ dependencies {
     implementation AndroidLib.androidx_appcompat
     implementation AndroidLib.androidx_constraintlayout
 
+    implementation AndroidLib.coroutines_core
+    implementation AndroidLib.coroutines_android
+
     testImplementation AndroidTestLib.junit_lib
     androidTestImplementation AndroidTestLib.android_test_junit
     androidTestImplementation AndroidTestLib.android_test_espresso_core
