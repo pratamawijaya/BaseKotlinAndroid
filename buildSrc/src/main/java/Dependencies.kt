@@ -12,6 +12,7 @@ object Versions {
     val core_ktx = "1.3.0"
     val androidx_appcompat = "1.1.0"
     val androidx_constraintlayout = "1.1.3"
+    val routing_navigator = "1.0.0"
 }
 
 
@@ -21,6 +22,7 @@ object AndroidLib {
     val androidx_appcompat = "androidx.appcompat:appcompat:${Versions.androidx_appcompat}"
     val androidx_constraintlayout =
         "androidx.constraintlayout:constraintlayout:${Versions.androidx_constraintlayout}"
+    val routing_navigator = "com.github.florent37:navigator:${Versions.routing_navigator}"
 }
 
 object AndroidTestLib {
