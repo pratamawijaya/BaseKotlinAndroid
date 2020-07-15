@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    compileSdkVersion AndroidConfig.compileSdkVersion
+    buildToolsVersion AndroidConfig.buildToolsVersion
 
     defaultConfig {
         applicationId "com.pratama.baseandroid"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion AndroidConfig.minSdkVersion
+        targetSdkVersion AndroidConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -26,12 +26,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation AndroidLib.kotlin_stdlib
+    implementation AndroidLib.androidx_core
+    implementation AndroidLib.androidx_appcompat
+    implementation AndroidLib.androidx_constraintlayout
+
+    testImplementation AndroidTestLib.junit_lib
+    androidTestImplementation AndroidTestLib.android_test_junit
+    androidTestImplementation AndroidTestLib.android_test_espresso_core
 
 }
