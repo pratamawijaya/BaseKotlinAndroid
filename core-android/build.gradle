@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion AndroidConfig.compileSdkVersion
@@ -22,6 +23,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -33,6 +42,14 @@ dependencies {
 
     implementation AndroidLib.coroutines_core
     implementation AndroidLib.coroutines_android
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha05"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha05"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    kapt "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha05"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     testImplementation AndroidTestLib.junit_lib
     androidTestImplementation AndroidTestLib.android_test_junit

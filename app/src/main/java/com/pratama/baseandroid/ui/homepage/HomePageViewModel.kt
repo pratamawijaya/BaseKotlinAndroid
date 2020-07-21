@@ -1,5 +1,6 @@
 package com.pratama.baseandroid.ui.homepage
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.ajalt.timberkt.d
@@ -12,6 +13,8 @@ import javax.inject.Inject
 
 class HomePageViewModel @Inject constructor(private val useCase: GetTopHeadlineUseCase) :
     ViewModel() {
+
+    var newsLiveData = MutableLiveData<List<News>>()
 
     fun getTopHeadlinesByCountry(country: String, category: String) {
         viewModelScope.launch {
@@ -26,9 +29,11 @@ class HomePageViewModel @Inject constructor(private val useCase: GetTopHeadlineU
     }
 
     private fun handleTopHeadlines(list: List<News>) {
-        list.map {
-            d { "news ${it.title} - ${it.url}" }
-        }
+//        list.map {
+//            d { "news ${it.title} - ${it.url}" }
+//            newsLiveData.postValue(it)
+//        }
+        newsLiveData.postValue(list)
     }
 
     private fun handleFailure(failure: Failure) {
