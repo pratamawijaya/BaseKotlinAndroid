@@ -2,4 +2,5 @@
     package="com.pratama.baseandroid.coreandroid">
 
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
