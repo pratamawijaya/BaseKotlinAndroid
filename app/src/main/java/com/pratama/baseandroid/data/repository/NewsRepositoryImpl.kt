@@ -1,5 +1,6 @@
 package com.pratama.baseandroid.data.repository
 
+import com.github.ajalt.timberkt.e
 import com.pratama.baseandroid.coreandroid.exception.Failure
 import com.pratama.baseandroid.coreandroid.functional.Either
 import com.pratama.baseandroid.coreandroid.network.NetworkChecker
@@ -16,18 +17,22 @@ class NewsRepositoryImpl @Inject constructor(
     private val networkChecker: NetworkChecker
 ) : NewsRepository {
 
-    override suspend fun getTopHeadlines(country: String): Either<Failure, List<News>> {
+    override suspend fun getTopHeadlines(
+        country: String,
+        category: String
+    ): Either<Failure, List<News>> {
         //todo: implementasi ke remote dan local server
         return try {
             if (networkChecker.isNetworkConnected()) {
                 // connected to internet
-                val response = remote.getTopHeadlines(category = "Technology", country = country)
+                val response = remote.getTopHeadlines(category = category, country = country)
                 Either.Right(response.toNewsList())
             } else {
                 // not connected
                 Either.Right(emptyList())
             }
         } catch (ex: Exception) {
+            e { "error ${ex.localizedMessage}" }
             Either.Left(Failure.ServerError)
         }
     }

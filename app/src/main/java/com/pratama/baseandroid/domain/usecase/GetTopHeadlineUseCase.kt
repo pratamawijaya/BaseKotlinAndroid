@@ -8,10 +8,14 @@ import com.pratama.baseandroid.domain.entity.News
 import javax.inject.Inject
 
 class GetTopHeadlineUseCase @Inject constructor(private val repository: NewsRepository) :
-    UseCase<List<News>, String>() {
+    UseCase<List<News>, GetTopHeadlineUseCase.TopHeadlineParam>() {
 
-    override suspend fun run(params: String): Either<Failure, List<News>> {
-        return repository.getTopHeadlines(params)
+    override suspend fun run(params: TopHeadlineParam): Either<Failure, List<News>> {
+        return repository.getTopHeadlines(params.country, params.category)
     }
 
+    data class TopHeadlineParam(
+        val country: String,
+        val category: String
+    )
 }

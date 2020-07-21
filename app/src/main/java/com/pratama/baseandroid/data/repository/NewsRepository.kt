@@ -5,5 +5,5 @@ import com.pratama.baseandroid.coreandroid.functional.Either
 import com.pratama.baseandroid.domain.entity.News
 
 interface NewsRepository {
-    suspend fun getTopHeadlines(country: String): Either<Failure, List<News>>
+    suspend fun getTopHeadlines(country: String, category: String): Either<Failure, List<News>>
 }

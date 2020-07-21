@@ -16,6 +16,9 @@ class HomePageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
 
-        homeViewModel.getTopHeadlinesByCountry("Usa")
+        homeViewModel.getTopHeadlinesByCountry(
+            country = "us",
+            category = "business"
+        )
     }
 }

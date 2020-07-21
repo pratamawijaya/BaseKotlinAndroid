@@ -13,9 +13,15 @@ import javax.inject.Inject
 class HomePageViewModel @Inject constructor(private val useCase: GetTopHeadlineUseCase) :
     ViewModel() {
 
-    fun getTopHeadlinesByCountry(country: String) {
+    fun getTopHeadlinesByCountry(country: String, category: String) {
         viewModelScope.launch {
-            useCase.run(country).fold(::handleFailure, ::handleTopHeadlines)
+            useCase.run(
+                GetTopHeadlineUseCase.TopHeadlineParam(
+                    country = country,
+                    category = category
+                )
+            )
+                .fold(::handleFailure, ::handleTopHeadlines)
         }
     }
 
