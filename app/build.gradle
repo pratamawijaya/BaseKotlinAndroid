@@ -29,6 +29,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -43,10 +46,11 @@ dependencies {
     implementation AndroidLib.androidx_constraintlayout
 
     implementation AndroidLib.retrofit_android
+    implementation AndroidLib.moshi_converter
     implementation AndroidLib.okhttp_logging
 
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    implementation AndroidLib.hilt
+    kapt AndroidLib.hilt_processor_compiler
 
     testImplementation AndroidTestLib.junit_lib
     androidTestImplementation AndroidTestLib.android_test_junit

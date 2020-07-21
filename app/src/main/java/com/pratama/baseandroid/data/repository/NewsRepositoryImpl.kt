@@ -7,8 +7,9 @@ import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.domain.entity.News
 import java.lang.Exception
+import javax.inject.Inject
 
-class NewsRepositoryImpl(
+class NewsRepositoryImpl @Inject constructor(
     private val remote: NewsRemoteDatasource,
     private val local: NewsLocalDatasource,
     private val networkChecker: NetworkChecker

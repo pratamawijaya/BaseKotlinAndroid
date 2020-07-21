@@ -15,7 +15,9 @@ object Versions {
     val routing_navigator = "1.0.0"
     val coroutines = "1.3.7"
     val retrofit = "2.9.0"
+    val retrofit_moshi = "2.6.2"
     val logging_interceptor = "4.8.0"
+    val hilt = "2.28-alpha"
 }
 
 
@@ -30,7 +32,10 @@ object AndroidLib {
     val coroutines_android =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     val retrofit_android = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    val moshi_converter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit_moshi}"
     val okhttp_logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging_interceptor}"
+    val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    val hilt_processor_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
 }
 
