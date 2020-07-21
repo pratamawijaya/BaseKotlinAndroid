@@ -11,10 +11,15 @@ import com.pratama.baseandroid.domain.usecase.GetTopHeadlineUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+sealed class HomePageState {
+    data class ErrorState(val message: String) : HomePageState()
+    data class NewsLoadedState(val news: List<News>) : HomePageState()
+}
+
 class HomePageViewModel @Inject constructor(private val useCase: GetTopHeadlineUseCase) :
     ViewModel() {
 
-    var newsLiveData = MutableLiveData<List<News>>()
+    var homePageState = MutableLiveData<HomePageState>()
 
     fun getTopHeadlinesByCountry(country: String, category: String) {
         viewModelScope.launch {
@@ -29,19 +34,17 @@ class HomePageViewModel @Inject constructor(private val useCase: GetTopHeadlineU
     }
 
     private fun handleTopHeadlines(list: List<News>) {
-//        list.map {
-//            d { "news ${it.title} - ${it.url}" }
-//            newsLiveData.postValue(it)
-//        }
-        newsLiveData.postValue(list)
+        homePageState.postValue(HomePageState.NewsLoadedState(list))
     }
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
             is Failure.ServerError -> {
                 e { "server error" }
+                homePageState.postValue(HomePageState.ErrorState("Server Error"))
             }
             is Failure.NetworkException -> {
+                homePageState.postValue(HomePageState.ErrorState("Network Exceptions"))
                 e { "network exceptions" }
             }
         }

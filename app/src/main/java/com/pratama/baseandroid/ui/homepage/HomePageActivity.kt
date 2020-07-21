@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.ajalt.timberkt.d
+import com.github.ajalt.timberkt.e
 import com.pratama.baseandroid.R
 import com.pratama.baseandroid.ui.homepage.rvitem.NewsItem
 import com.xwray.groupie.GroupAdapter
@@ -32,11 +33,19 @@ class HomePageActivity : AppCompatActivity() {
             category = "business"
         )
 
-        homeViewModel.newsLiveData.observe(this, Observer {
-            d { "add news to adapter" }
-            it.map { news ->
-                homeAdapter.add(NewsItem(news))
+        homeViewModel.homePageState.observe(this, Observer { state ->
+            when (state) {
+                is HomePageState.NewsLoadedState -> {
+                    state.news.map {
+                        homeAdapter.add(NewsItem(it))
+                    }
+                }
+
+                is HomePageState.ErrorState -> {
+                    e { "error ${state.message}" }
+                }
             }
+
         })
     }
 
