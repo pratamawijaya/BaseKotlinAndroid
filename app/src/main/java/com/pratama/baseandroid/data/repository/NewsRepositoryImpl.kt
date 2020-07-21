@@ -5,6 +5,7 @@ import com.pratama.baseandroid.coreandroid.functional.Either
 import com.pratama.baseandroid.coreandroid.network.NetworkChecker
 import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
+import com.pratama.baseandroid.data.datasource.remote.model.toNewsList
 import com.pratama.baseandroid.domain.entity.News
 import java.lang.Exception
 import javax.inject.Inject
@@ -20,11 +21,12 @@ class NewsRepositoryImpl @Inject constructor(
         return try {
             if (networkChecker.isNetworkConnected()) {
                 // connected to internet
-                val response = remote.getTopHeadlines(category = "", country = country)
+                val response = remote.getTopHeadlines(category = "Technology", country = country)
+                Either.Right(response.toNewsList())
             } else {
                 // not connected
+                Either.Right(emptyList())
             }
-            Either.Right(emptyList())
         } catch (ex: Exception) {
             Either.Left(Failure.ServerError)
         }

@@ -49,6 +49,11 @@ dependencies {
     implementation AndroidLib.moshi_converter
     implementation AndroidLib.okhttp_logging
 
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha01"
+
+    implementation 'com.github.ajalt:timberkt:1.5.1'
+
     implementation AndroidLib.hilt
     kapt AndroidLib.hilt_processor_compiler
 
