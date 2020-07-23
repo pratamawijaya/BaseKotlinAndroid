@@ -1,5 +1,6 @@
 package com.pratama.baseandroid.data.repository
 
+import com.github.ajalt.timberkt.d
 import com.github.ajalt.timberkt.e
 import com.pratama.baseandroid.coreandroid.exception.Failure
 import com.pratama.baseandroid.coreandroid.functional.Either
@@ -21,15 +22,24 @@ class NewsRepositoryImpl @Inject constructor(
         country: String,
         category: String
     ): Either<Failure, List<News>> {
-        //todo: implementasi ke remote dan local server
         return try {
             if (networkChecker.isNetworkConnected()) {
+                d { "connection : connect to internet" }
                 // connected to internet
                 val response = remote.getTopHeadlines(category = category, country = country)
+                local.insertNews(response)
+
                 Either.Right(response)
             } else {
+                d { "connection : disconnect" }
                 // not connected
-                Either.Right(emptyList())
+                val localNews = local.getAllNews()
+                d { "get data from local: ${localNews.size}" }
+                if (localNews.isEmpty()) {
+                    Either.Left(Failure.LocalDataNotFound)
+                } else {
+                    Either.Right(localNews)
+                }
             }
         } catch (ex: Exception) {
             e { "error ${ex.localizedMessage}" }

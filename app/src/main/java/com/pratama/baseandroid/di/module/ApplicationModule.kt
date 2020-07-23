@@ -82,8 +82,8 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNewsLocalDatasource(): NewsLocalDatasource {
-        return NewsLocalDatasourceImpl()
+    fun provideNewsLocalDatasource(appDatabase: AppDatabase): NewsLocalDatasource {
+        return NewsLocalDatasourceImpl(appDatabase)
     }
 
     @Provides
