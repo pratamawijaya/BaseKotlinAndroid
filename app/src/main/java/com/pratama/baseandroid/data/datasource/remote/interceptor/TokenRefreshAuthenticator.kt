@@ -5,6 +5,7 @@ import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
+import java.io.IOException
 
 class TokenRefreshAuthenticator : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? = when {
@@ -16,7 +17,7 @@ class TokenRefreshAuthenticator : Authenticator {
         // todo: setup auth repo
 //        val accessToken = authenticationRepository.fetchFreshAccessToken()
         request.signWithToken("my_token")
-    } catch (error: Throwable) {
+    } catch (error: IOException) {
         e { "Failed to resign request" }
         null
     }

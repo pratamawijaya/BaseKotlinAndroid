@@ -6,6 +6,13 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 class NetworkCheckerImpl(val ctx: Context) : NetworkChecker {
+
+    companion object {
+        const val CONNECTION_CELLULAR = 1
+        const val CONNECTION_WIFI = 2
+        const val CONNECTION_VPN = 3
+    }
+
     override fun isNetworkConnected(): Boolean {
         val connectionType = getConnectionType(ctx)
         return connectionType != 0
@@ -19,13 +26,13 @@ class NetworkCheckerImpl(val ctx: Context) : NetworkChecker {
                 cm.getNetworkCapabilities(cm.activeNetwork)?.run {
                     when {
                         hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                            result = 2
+                            result = CONNECTION_WIFI
                         }
                         hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                            result = 1
+                            result = CONNECTION_CELLULAR
                         }
                         hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> {
-                            result = 3
+                            result = CONNECTION_VPN
                         }
                     }
                 }
@@ -35,13 +42,13 @@ class NetworkCheckerImpl(val ctx: Context) : NetworkChecker {
                 cm.activeNetworkInfo?.run {
                     when (type) {
                         ConnectivityManager.TYPE_WIFI -> {
-                            result = 2
+                            result = CONNECTION_WIFI
                         }
                         ConnectivityManager.TYPE_MOBILE -> {
-                            result = 1
+                            result = CONNECTION_CELLULAR
                         }
                         ConnectivityManager.TYPE_VPN -> {
-                            result = 3
+                            result = CONNECTION_VPN
                         }
                     }
                 }

@@ -42,4 +42,3 @@ fun NewsEntity.toNews(): News {
         publishedAt = this.publishedAt ?: ""
     )
 }
-

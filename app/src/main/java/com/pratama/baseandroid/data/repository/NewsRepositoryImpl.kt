@@ -9,6 +9,7 @@ import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.data.datasource.remote.model.toNewsList
 import com.pratama.baseandroid.domain.entity.News
+import java.io.IOException
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -41,7 +42,7 @@ class NewsRepositoryImpl @Inject constructor(
                     Either.Right(localNews)
                 }
             }
-        } catch (ex: Exception) {
+        } catch (ex: IOException) {
             e { "error ${ex.localizedMessage}" }
             Either.Left(Failure.ServerError)
         }
