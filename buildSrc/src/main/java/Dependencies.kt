@@ -19,6 +19,9 @@ object Versions {
     const val logging_interceptor = "4.8.0"
     const val hilt = "2.28-alpha"
     const val groupie = "2.8.0"
+    const val room = "2.2.5"
+    const val android_lifecycle = "2.3.0-alpha05"
+    const val timber = "1.5.1"
 }
 
 
@@ -34,12 +37,23 @@ object AndroidLib {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     val retrofit_android = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val moshi_converter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit_moshi}"
+    const val gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     val okhttp_logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging_interceptor}"
     val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     val hilt_processor_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupie_kotline_ext = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
-
+    val room = "androidx.room:room-runtime:${Versions.room}"
+    val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    val room_coroutine = "androidx.room:room-ktx:${Versions.room}"
+    const val viewmodel_ktx =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.android_lifecycle}"
+    const val viewmodel_runtime =
+        "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.android_lifecycle}"
+    const val viewmodel_extension = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    const val viewmodel_compiler =
+        "androidx.lifecycle:lifecycle-compiler:${Versions.android_lifecycle}"
+    const val timber = "com.github.ajalt:timberkt:1.5.1"
 }
 
 object AndroidTestLib {
