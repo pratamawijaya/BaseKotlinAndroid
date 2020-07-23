@@ -19,14 +19,27 @@ data class NewsEntity(
     var newsId: Int = 0
 }
 
-fun NewsEntity.toNews(): News {
-    return News(
-        source = NewsSource("", source ?: ""),
-        author = author ?: "",
-        title = title ?: "",
-        description = description ?: "",
-        urlToImage = urlToImage ?: "",
-        url = url ?: "",
-        publishedAt = publishedAt ?: ""
+fun News.toNewsEntity(): NewsEntity {
+    return NewsEntity(
+        title = this.title,
+        author = this.author,
+        description = this.description,
+        url = this.url,
+        urlToImage = this.urlToImage,
+        publishedAt = this.publishedAt,
+        source = this.source.name
     )
 }
+
+fun NewsEntity.toNews(): News {
+    return News(
+        source = NewsSource("", this.source ?: ""),
+        author = this.author ?: "",
+        title = this.title ?: "",
+        description = this.description ?: "",
+        urlToImage = this.urlToImage ?: "",
+        url = this.url ?: "",
+        publishedAt = this.publishedAt ?: ""
+    )
+}
+

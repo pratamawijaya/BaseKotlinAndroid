@@ -11,5 +11,5 @@ interface NewsDao {
     suspend fun getAllNews(): List<NewsEntity>
 
     @Insert
-    suspend fun insertAll(vararg news: NewsEntity)
+    suspend fun insert(news: NewsEntity)
 }
