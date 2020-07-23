@@ -1,11 +1,13 @@
 package com.pratama.baseandroid.di.module
 
 import android.content.Context
+import androidx.room.Room
 import com.pratama.baseandroid.BuildConfig
 import com.pratama.baseandroid.coreandroid.network.NetworkChecker
 import com.pratama.baseandroid.coreandroid.network.NetworkCheckerImpl
 import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasourceImpl
+import com.pratama.baseandroid.data.datasource.local.db.AppDatabase
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasourceImpl
 import com.pratama.baseandroid.data.datasource.remote.service.NewsApiServices
@@ -14,11 +16,9 @@ import com.pratama.baseandroid.data.repository.NewsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -61,6 +61,15 @@ class ApplicationModule {
     @Singleton
     fun provideNewsApiServices(retrofit: Retrofit): NewsApiServices =
         retrofit.create(NewsApiServices::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext ctx: Context): AppDatabase {
+        return Room.databaseBuilder(
+            ctx,
+            AppDatabase::class.java, "my_app_database"
+        ).build()
+    }
 
     @Provides
     @Singleton
