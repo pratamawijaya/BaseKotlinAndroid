@@ -1,1 +1,8 @@
+//include ':feature:detailnews'
+//include ':feature:homepage'
+//include ':feature:splash'
+
+include ':routing'
+include ':core-android'
 include ':app'
+rootProject.name = "BaseAndroidKotlin"

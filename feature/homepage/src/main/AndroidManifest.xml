@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pratama.baseandroid.homepage">
+
+    <application>
+        <activity android:name=".ui.HomePageActivity"></activity>
+
+        <provider
+            android:name=".RouteProvider"
+            android:authorities="${applicationId}.homepage.RouteProvider"></provider>
+    </application>
+
+</manifest>
