@@ -10,6 +10,7 @@ import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasourceImpl
 import com.pratama.baseandroid.data.datasource.local.db.AppDatabase
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasourceImpl
+import com.pratama.baseandroid.data.datasource.remote.interceptor.HeaderInterceptor
 import com.pratama.baseandroid.data.datasource.remote.service.NewsApiServices
 import com.pratama.baseandroid.data.repository.NewsRepository
 import com.pratama.baseandroid.data.repository.NewsRepositoryImpl
@@ -32,21 +33,23 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+    fun provideOkHttpClient(headerInterceptor: HeaderInterceptor) = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor { chain ->
-                provideHeaderInterceptor(chain)
-            }
+            .addInterceptor(headerInterceptor)
             .build()
     } else {
         OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                provideHeaderInterceptor(chain)
-            }
+            .addInterceptor(headerInterceptor)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideHeaderInterceptor(): HeaderInterceptor {
+        return HeaderInterceptor()
     }
 
     @Provides

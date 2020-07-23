@@ -26,7 +26,7 @@ class NewsRepositoryImpl @Inject constructor(
             if (networkChecker.isNetworkConnected()) {
                 // connected to internet
                 val response = remote.getTopHeadlines(category = category, country = country)
-                Either.Right(response.toNewsList())
+                Either.Right(response)
             } else {
                 // not connected
                 Either.Right(emptyList())
