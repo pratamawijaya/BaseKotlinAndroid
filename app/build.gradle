@@ -61,6 +61,9 @@ dependencies {
     implementation(AndroidLib.viewmodel_extension)
     kapt(AndroidLib.viewmodel_compiler)
 
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
     implementation(AndroidLib.timber)
 
     implementation AndroidLib.hilt

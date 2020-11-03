@@ -1,6 +1,3 @@
 <resources>
 
-    <style name="Theme.BaseApp" parent="Base.Theme.BaseApp">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    </style>
 </resources>
