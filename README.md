@@ -10,12 +10,12 @@ MVVM Base Android Kotlin Project
 ## Tech Stack
 - Kotlin
 - AndroidX
-- Rx
+- Coroutine
 - Retrofit / OkHttp
 - Gson
 - Groupie as Recyclerview lib
 - sdp ssp
-- Koin as Dependency Injection lib
+- Hilt as Dependency Injection lib
 - Picasso as Image loader
 
 ## Extra

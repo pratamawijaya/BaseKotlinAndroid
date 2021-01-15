@@ -5,10 +5,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0"
+        classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$Versions.hilt"
         classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:+'
     }
 }
 
@@ -24,6 +25,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+
+    apply plugin: com.github.benmanes.gradle.versions.VersionsPlugin
+
+    tasks.named("dependencyUpdates").configure {
+        // configure the task, for example wrt. resolution strategies
     }
 }
 

@@ -1,12 +1,12 @@
 object AndroidConfig {
-    const val compileSdkVersion = 29
+    const val compileSdkVersion = 30
     const val buildToolsVersion = "30.0.0"
-    const val minSdkVersion = 16
+    const val minSdkVersion = 21
     const val targetSdkVersion = 29
 }
 
 object Versions {
-    const val kotlin = "1.3.72"
+    const val kotlin = "1.4.21"
     const val gradle = "4.0.0"
     const val junit = "4.12"
     const val core_ktx = "1.3.0"
