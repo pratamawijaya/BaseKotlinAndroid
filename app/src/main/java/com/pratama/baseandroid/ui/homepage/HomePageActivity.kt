@@ -11,7 +11,7 @@ class HomePageActivity : BaseActivityBinding<ActivityHomeBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityHomeBinding
         get() = ActivityHomeBinding::inflate
 
-    override fun setupView() {
+    override fun setupView(binding: ActivityHomeBinding) {
 
     }
 

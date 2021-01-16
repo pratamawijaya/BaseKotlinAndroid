@@ -29,10 +29,10 @@ abstract class BaseFragmentBinding<T : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupView()
+        setupView(binding)
     }
 
-    abstract fun setupView()
+    abstract fun setupView(binding: T)
 
     override fun onDestroyView() {
         super.onDestroyView()

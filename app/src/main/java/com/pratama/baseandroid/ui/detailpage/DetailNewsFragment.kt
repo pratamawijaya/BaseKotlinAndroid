@@ -10,7 +10,7 @@ class DetailNewsFragment : BaseFragmentBinding<FragmentDetailNewsBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetailNewsBinding
         get() = FragmentDetailNewsBinding::inflate
 
-    override fun setupView() {
+    override fun setupView(binding: FragmentDetailNewsBinding) {
         // todo
 
     }
