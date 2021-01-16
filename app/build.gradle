@@ -25,10 +25,15 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
@@ -54,11 +59,19 @@ dependencies {
 
     implementation(AndroidLib.room)
     implementation(AndroidLib.room_coroutine)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt(AndroidLib.room_compiler)
+
+    def nav_version = "2.3.2"
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     implementation(AndroidLib.viewmodel_ktx)
     implementation(AndroidLib.viewmodel_runtime)
     implementation(AndroidLib.viewmodel_extension)
+
     kapt(AndroidLib.viewmodel_compiler)
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
