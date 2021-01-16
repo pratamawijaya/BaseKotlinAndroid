@@ -18,10 +18,10 @@ abstract class BaseActivityBinding<T : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = bindingInflater.invoke(layoutInflater)
         setContentView(requireNotNull(_binding).root)
-        setup()
+        setupView()
     }
 
-    abstract fun setup()
+    abstract fun setupView()
 
     override fun onDestroy() {
         super.onDestroy()
