@@ -37,11 +37,7 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>() {
         rvListNews.layoutManager = LinearLayoutManager(requireActivity())
         rvListNews.adapter = listNewsAdapter
 
-        swipeRefreshLayout.setOnRefreshListener {
-            listNewsAdapter.clear()
-
-            callData()
-        }
+        setListener(binding)
 
         callData()
 
@@ -64,6 +60,14 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>() {
                 }
             }
         })
+    }
+
+    private fun setListener(binding: FragmentListNewsBinding) {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            listNewsAdapter.clear()
+
+            callData()
+        }
     }
 
     private fun callData() {

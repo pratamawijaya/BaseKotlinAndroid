@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -55,6 +54,7 @@ dependencies {
     implementation AndroidLib.okhttp_logging
 
     implementation(AndroidLib.groupie)
+    implementation(AndroidLib.groupie_viewbinding)
     implementation(AndroidLib.groupie_kotline_ext)
 
     implementation(AndroidLib.room)
