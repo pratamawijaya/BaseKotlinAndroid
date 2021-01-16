@@ -8,30 +8,23 @@ buildscript {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$Versions.hilt"
-        classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
         classpath 'com.github.ben-manes:gradle-versions-plugin:+'
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$Versions.android_navigation"
+        classpath "org.jacoco:org.jacoco.core:0.8.5"
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.10.0")
+    id("io.gitlab.arturbosch.detekt").version("1.15.0")
 }
 
-// Groovy dsl
-tasks.detekt.jvmTarget = "1.8"
-
 allprojects {
-    apply from: "$rootDir/detekt.gradle"
+
+    apply from: "$rootDir/config/detekt.gradle"
+
     repositories {
         google()
         jcenter()
-    }
-
-    apply plugin: com.github.benmanes.gradle.versions.VersionsPlugin
-
-    tasks.named("dependencyUpdates").configure {
-        // configure the task, for example wrt. resolution strategies
     }
 }
 

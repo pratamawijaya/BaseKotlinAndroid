@@ -4,6 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-parcelize'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply from: "$project.rootDir/config/jacoco.gradle"
 
 android {
     compileSdkVersion AndroidConfig.compileSdkVersion
@@ -20,6 +21,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -84,6 +90,10 @@ dependencies {
     kapt AndroidLib.hilt_processor_compiler
 
     testImplementation AndroidTestLib.junit_lib
+    testImplementation "io.mockk:mockk:$Versions.mockk"
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$Versions.coroutines")
+
     androidTestImplementation AndroidTestLib.android_test_junit
     androidTestImplementation AndroidTestLib.android_test_espresso_core
 

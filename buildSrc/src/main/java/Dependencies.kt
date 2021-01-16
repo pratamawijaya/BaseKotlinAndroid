@@ -23,6 +23,8 @@ object Versions {
     const val android_lifecycle = "2.3.0-alpha05"
     const val timber = "1.5.1"
     const val android_navigation = "2.3.2"
+    const val detekt = "1.15.0"
+    const val mockk = "1.10.5"
 }
 
 

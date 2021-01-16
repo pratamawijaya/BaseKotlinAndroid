@@ -3,7 +3,7 @@ apply plugin: 'io.gitlab.arturbosch.detekt'
 detekt {
     failFast = true
     buildUponDefaultConfig = true // preconfigure defaults
-    config = files("$rootDir/config/detekt.yml")
+    config = files("$rootDir/config/detekt_config.yml")
 
     reports {
         html.enabled = true // observe findings in your browser with structure and code snippets
@@ -12,3 +12,7 @@ detekt {
         // similar to the console output, contains issue signature to manually edit baseline files
     }
 }
+
+// Groovy dsl
+tasks.detekt.jvmTarget = "1.8"
+
