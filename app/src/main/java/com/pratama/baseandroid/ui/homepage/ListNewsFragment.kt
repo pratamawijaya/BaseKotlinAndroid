@@ -20,13 +20,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsItem.NewsListener {
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListNewsFragment().apply {
-            }
-    }
-
     @Inject
     lateinit var listNewsViewModel: ListNewsViewModel
 
