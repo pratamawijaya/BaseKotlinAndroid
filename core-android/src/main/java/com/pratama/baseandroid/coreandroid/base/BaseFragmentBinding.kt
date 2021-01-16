@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
+/*
+https://chetangupta.net/viewbinding/
+ */
+
 abstract class BaseFragmentBinding<T : ViewBinding> : Fragment() {
 
     private var _binding: T? = null
@@ -25,10 +29,10 @@ abstract class BaseFragmentBinding<T : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupView()
+        setupView(binding)
     }
 
-    abstract fun setupView()
+    abstract fun setupView(binding: T)
 
     override fun onDestroyView() {
         super.onDestroyView()

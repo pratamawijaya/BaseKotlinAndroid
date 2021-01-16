@@ -18,10 +18,11 @@ object Versions {
     const val retrofit_moshi = "2.6.2"
     const val logging_interceptor = "4.8.0"
     const val hilt = "2.28-alpha"
-    const val groupie = "2.8.0"
+    const val groupie = "2.9.0"
     const val room = "2.2.5"
     const val android_lifecycle = "2.3.0-alpha05"
     const val timber = "1.5.1"
+    const val android_navigation = "2.3.2"
 }
 
 
@@ -42,6 +43,7 @@ object AndroidLib {
     val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     val hilt_processor_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     val groupie = "com.xwray:groupie:${Versions.groupie}"
+    val groupie_viewbinding = "com.xwray:groupie-viewbinding:${Versions.groupie}"
     val groupie_kotline_ext = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
     val room = "androidx.room:room-runtime:${Versions.room}"
     val room_compiler = "androidx.room:room-compiler:${Versions.room}"

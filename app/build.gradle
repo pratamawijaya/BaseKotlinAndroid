@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-parcelize'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion AndroidConfig.compileSdkVersion
@@ -55,18 +56,18 @@ dependencies {
     implementation AndroidLib.okhttp_logging
 
     implementation(AndroidLib.groupie)
+    implementation(AndroidLib.groupie_viewbinding)
     implementation(AndroidLib.groupie_kotline_ext)
 
     implementation(AndroidLib.room)
     implementation(AndroidLib.room_coroutine)
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$Versions.kotlin"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt(AndroidLib.room_compiler)
 
-    def nav_version = "2.3.2"
     // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$Versions.android_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$Versions.android_navigation"
 
     implementation(AndroidLib.viewmodel_ktx)
     implementation(AndroidLib.viewmodel_runtime)

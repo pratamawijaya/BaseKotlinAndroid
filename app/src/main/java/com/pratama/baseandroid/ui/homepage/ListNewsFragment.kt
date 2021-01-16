@@ -1,36 +1,24 @@
 package com.pratama.baseandroid.ui.homepage
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.pratama.baseandroid.R
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.ajalt.timberkt.d
+import com.pratama.baseandroid.coreandroid.base.BaseFragmentBinding
+import com.pratama.baseandroid.coreandroid.extensions.toGone
+import com.pratama.baseandroid.coreandroid.extensions.toVisible
 import com.pratama.baseandroid.databinding.FragmentListNewsBinding
+import com.pratama.baseandroid.domain.entity.News
+import com.pratama.baseandroid.domain.entity.toDto
+import com.pratama.baseandroid.ui.homepage.rvitem.NewsItem
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class ListNewsFragment : Fragment() {
-
-    private var _binding: FragmentListNewsBinding? = null
-
-    private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        _binding = FragmentListNewsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+@AndroidEntryPoint
+class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsItem.NewsListener {
 
     companion object {
         @JvmStatic
@@ -38,4 +26,63 @@ class ListNewsFragment : Fragment() {
             ListNewsFragment().apply {
             }
     }
+
+    @Inject
+    lateinit var listNewsViewModel: ListNewsViewModel
+
+    private val listNewsAdapter = GroupAdapter<GroupieViewHolder>()
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentListNewsBinding =
+        FragmentListNewsBinding::inflate
+
+    override fun setupView(binding: FragmentListNewsBinding) = with(binding) {
+        // setupRecyclerview
+        rvListNews.layoutManager = LinearLayoutManager(requireActivity())
+        rvListNews.adapter = listNewsAdapter
+
+        setListener(binding)
+
+        callData()
+
+        listNewsViewModel.uiState().observe(viewLifecycleOwner, { state ->
+            when (state) {
+
+                is ListNewsViewModel.ListNewsState.Loading -> {
+                    loadingIndicator.toVisible()
+                }
+
+                is ListNewsViewModel.ListNewsState.NewsLoaded -> {
+                    loadingIndicator.toGone()
+                    swipeRefreshLayout.isRefreshing = false
+
+
+                    state.news.map {
+                        d { "news loaded -> ${it.title}" }
+                        listNewsAdapter.add(NewsItem(it, this@ListNewsFragment))
+                    }
+                }
+            }
+        })
+    }
+
+    override fun onNewsSelected(news: News) {
+        findNavController().navigate(
+            ListNewsFragmentDirections.actionListNewsFragmentToDetailNewsFragment(
+                news.toDto()
+            )
+        )
+    }
+
+    private fun setListener(binding: FragmentListNewsBinding) {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            listNewsAdapter.clear()
+
+            callData()
+        }
+    }
+
+    private fun callData() {
+        listNewsViewModel.getTopHeadlinesByCountry(country = "us", category = "technology")
+    }
+
 }
