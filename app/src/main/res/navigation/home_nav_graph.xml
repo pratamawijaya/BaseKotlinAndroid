@@ -18,5 +18,10 @@
         android:id="@+id/detailNewsFragment"
         android:name="com.pratama.baseandroid.ui.detailpage.DetailNewsFragment"
         android:label="fragment_detail_news"
-        tools:layout="@layout/fragment_detail_news" />
+        tools:layout="@layout/fragment_detail_news" >
+        <argument
+            android:name="newsDto"
+            app:argType="com.pratama.baseandroid.ui.dto.NewsDto"
+            app:nullable="true" />
+    </fragment>
 </navigation>

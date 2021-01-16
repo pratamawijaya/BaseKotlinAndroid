@@ -22,6 +22,7 @@ object Versions {
     const val room = "2.2.5"
     const val android_lifecycle = "2.3.0-alpha05"
     const val timber = "1.5.1"
+    const val android_navigation = "2.3.2"
 }
 
 
