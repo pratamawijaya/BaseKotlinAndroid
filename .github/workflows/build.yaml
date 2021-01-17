@@ -3,31 +3,15 @@ name: Android CI CD
 on: [pull_request, push]
 
 jobs:
-  test:
-    name: Run Static Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Run test
-        run: ./gradlew check
-  
-  codecoverage:
-    name: Run Jacoco
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Run Jacoco
-        run: ./gradlew testDebugUnitTestCoverage
-      - name: Publish CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
-
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v2
+      - name: Run test & Coverage
+        run: ./gradlew check testDebugUnitTestCoverage
+      - name: Publish CodeCoverage
+        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
       - name: Build Debug Apk
         run: ./gradlew assembleDebug
       - name: Upload APK
