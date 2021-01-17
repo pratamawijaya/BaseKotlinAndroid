@@ -20,7 +20,7 @@ MVVM Base Android Kotlin Project
 
 ## Extra
 - `./gradlew detekt` static analysis with detekt
-- `./gradlew ktlint` kotlin linter
+- `./gradlew testDebugUnitTestCoverage` for codeCoverage
 - `./gradlew check` for running all
 
 ## How to use

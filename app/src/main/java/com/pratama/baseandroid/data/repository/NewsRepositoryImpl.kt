@@ -28,6 +28,7 @@ class NewsRepositoryImpl @Inject constructor(
                 d { "connection : connect to internet" }
                 // connected to internet
                 val response = remote.getTopHeadlines(category = category, country = country)
+
                 local.insertNews(response)
 
                 Either.Right(response)

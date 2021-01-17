@@ -23,7 +23,7 @@ project.afterEvaluate {
                 def androidTestCoverageTask = "create${variantName.capitalize()}CoverageReport"
 
                 tasks.create(name: "${unitTestTask}Coverage", type: JacocoReport, dependsOn: [
-                        "$unitTestTask"
+                        "$unitTestTask",
 //                        "$androidTestCoverageTask" // disable UI Test
                 ]) {
                     group = "Reporting"
