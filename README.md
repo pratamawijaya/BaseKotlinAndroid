@@ -2,7 +2,7 @@
 # Base Android Project with Kotlin
 MVVM Base Android Kotlin Project
 
-![Android CI CD](https://github.com/pratamawijaya/BaseKotlinAndroid/workflows/Android%20CI%20CD/badge.svg)
+![build](https://github.com/pratamawijaya/BaseKotlinAndroid/workflows/build/badge.svg)
 
 [![codecov](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid/branch/master/graph/badge.svg)](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid)
 
