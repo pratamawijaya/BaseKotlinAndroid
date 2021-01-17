@@ -46,7 +46,6 @@ object AndroidLib {
     val hilt_processor_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupie_viewbinding = "com.xwray:groupie-viewbinding:${Versions.groupie}"
-    val groupie_kotline_ext = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
     val room = "androidx.room:room-runtime:${Versions.room}"
     val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     val room_coroutine = "androidx.room:room-ktx:${Versions.room}"

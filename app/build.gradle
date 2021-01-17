@@ -63,7 +63,6 @@ dependencies {
 
     implementation(AndroidLib.groupie)
     implementation(AndroidLib.groupie_viewbinding)
-    implementation(AndroidLib.groupie_kotline_ext)
 
     implementation(AndroidLib.room)
     implementation(AndroidLib.room_coroutine)
