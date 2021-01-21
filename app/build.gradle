@@ -6,6 +6,10 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: "$project.rootDir/config/jacoco.gradle"
 
+kapt { 
+    useBuildCache = true
+}
+
 android {
     compileSdkVersion AndroidConfig.compileSdkVersion
     buildToolsVersion AndroidConfig.buildToolsVersion
@@ -88,12 +92,29 @@ dependencies {
     implementation AndroidLib.hilt
     kapt AndroidLib.hilt_processor_compiler
 
+    def fragment_version = "1.2.5"
+
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    // Robolectric
+    testImplementation "org.robolectric:robolectric:4.4"
+    // Espresso and tests utilities for local and instrumentation tests
+    testImplementation "androidx.test.ext:unit:1.1.2"
+    testImplementation "androidx.test:runner:1.3.0"
+    testImplementation "androidx.test:core:1.3.0"
+    testImplementation "androidx.test:rules:1.3.0"
+    testImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    testImplementation "androidx.test.espresso:espresso-intents:3.3.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.test:runner:1.3.0"
+    androidTestImplementation "androidx.test:core:1.3.0"
+    androidTestImplementation "androidx.test:rules:1.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.3.0"
+
     testImplementation AndroidTestLib.junit_lib
     testImplementation "io.mockk:mockk:$Versions.mockk"
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$Versions.coroutines")
-
-    androidTestImplementation AndroidTestLib.android_test_junit
-    androidTestImplementation AndroidTestLib.android_test_espresso_core
 
 }
