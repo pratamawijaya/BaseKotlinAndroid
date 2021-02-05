@@ -6,8 +6,8 @@ object AndroidConfig {
 }
 
 object Versions {
-    const val kotlin = "1.4.21"
-    const val gradle = "4.0.0"
+    const val kotlin = "1.4.30"
+    const val gradle = "4.1.2"
     const val junit = "4.12"
     const val core_ktx = "1.3.0"
     const val androidx_appcompat = "1.1.0"

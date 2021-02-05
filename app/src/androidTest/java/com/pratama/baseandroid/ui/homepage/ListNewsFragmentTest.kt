@@ -20,6 +20,5 @@ class ListNewsFragmentTest {
         val args = bundleOf("coba" to 1)
         val scenario = launchFragmentInContainer<ListNewsFragment>(args)
 
-        onV
     }
 }
