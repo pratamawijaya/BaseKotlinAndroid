@@ -44,8 +44,7 @@ class NewsRepositoryImpl @Inject constructor(
                 }
             }
         } catch (ex: IOException) {
-            e { "error ${ex.localizedMessage}" }
-            Either.Left(Failure.ServerError)
+            Either.Left(Failure.ServerError(ex.localizedMessage))
         }
     }
 }

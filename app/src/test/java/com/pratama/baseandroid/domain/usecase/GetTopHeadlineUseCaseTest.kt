@@ -70,7 +70,7 @@ class GetTopHeadlineUseCaseTest {
     }
 
     private fun generateFailure(): Either<Failure, List<News>> {
-        return Either.Left(Failure.ServerError)
+        return Either.Left(Failure.ServerError("error"))
     }
 
     private fun generateFakeNews(): Either<Failure, List<News>> {
