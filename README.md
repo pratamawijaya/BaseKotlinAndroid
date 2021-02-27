@@ -2,7 +2,7 @@
 # Base Android Project with Kotlin
 MVVM Base Android Kotlin Project
 
-![build](https://github.com/pratamawijaya/BaseKotlinAndroid/workflows/build/badge.svg)
+[![build](https://github.com/pratamawijaya/BaseKotlinAndroid/actions/workflows/build.yaml/badge.svg)](https://github.com/pratamawijaya/BaseKotlinAndroid/actions/workflows/build.yaml)
 
 [![codecov](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid/branch/master/graph/badge.svg)](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid)
 
