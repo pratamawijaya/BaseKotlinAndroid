@@ -17,7 +17,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val retrofit_moshi = "2.6.2"
     const val logging_interceptor = "4.8.0"
-    const val hilt = "2.31.2-alpha"
+    const val hilt = "2.33-beta"
     const val groupie = "2.9.0"
     const val room = "2.2.5"
     const val android_lifecycle = "2.3.0-alpha05"
