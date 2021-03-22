@@ -6,7 +6,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: "$project.rootDir/config/jacoco.gradle"
 
-kapt { 
+kapt {
     useBuildCache = true
 }
 
@@ -47,6 +47,12 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
     }
 }
 
@@ -95,6 +101,9 @@ dependencies {
     def fragment_version = "1.2.5"
 
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+//    testImplementation 'io.kotest:kotest-runner-junit5:4.4.3'
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.4.3")
 
     testImplementation AndroidTestLib.junit_lib
     testImplementation "io.mockk:mockk:$Versions.mockk"
