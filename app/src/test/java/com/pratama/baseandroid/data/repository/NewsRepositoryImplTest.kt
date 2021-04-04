@@ -1,30 +1,37 @@
 package com.pratama.baseandroid.data.repository
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.pratama.baseandroid.coreandroid.functional.Either
+import app.cash.turbine.test
+import com.pratama.baseandroid.CoroutineTestRule
+import com.pratama.baseandroid.coreandroid.base.network.Result
 import com.pratama.baseandroid.coreandroid.network.NetworkChecker
 import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.domain.entity.News
 import com.pratama.baseandroid.domain.entity.NewsSource
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import io.mockk.impl.annotations.SpyK
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import java.io.IOException
+import kotlin.time.ExperimentalTime
 
 @RunWith(JUnit4::class)
 class NewsRepositoryImplTest {
 
-    @Rule
-    @JvmField
-    val instantExecutorRule = InstantTaskExecutorRule()
+    private val testDispatcher = TestCoroutineDispatcher()
+
+    @get:Rule
+    val testRule = CoroutineTestRule(testDispatcher)
 
     lateinit var newsRepository: NewsRepository
 
@@ -42,6 +49,22 @@ class NewsRepositoryImplTest {
         MockKAnnotations.init(this)
         newsRepository =
             NewsRepositoryImpl(newsRemoteDatasource, newsLocalDatasource, networkChecker)
+    }
+
+    @ExperimentalTime
+    @Test
+    fun `test flow, need fresh data`() = runBlockingTest {
+
+        val result = newsRepository.getTopHeadlinesFlow(
+            forceUpdate = true,
+            country = "us",
+            category = "tech"
+        )
+
+        result.test {
+            assertEquals(Result.loading(null), expectEvent())
+            expectComplete()
+        }
     }
 
     @Test
