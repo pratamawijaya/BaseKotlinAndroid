@@ -1,2 +1,9 @@
+include ':library:core_android'
+include ':feature:account'
+include ':feature:home'
+include ':feature:authentication'
+include ':feature:onboard'
+include ':library:preferences'
+include ':library:logger'
 include ':app'
 rootProject.name = "BaseKotlinAndroidModular"
