@@ -1,3 +1,4 @@
+include ':library:navigation'
 include ':library:core_android'
 include ':feature:account'
 include ':feature:home'
