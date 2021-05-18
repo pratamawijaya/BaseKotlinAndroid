@@ -8,6 +8,11 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseActivityBinding<T : ViewBinding> : AppCompatActivity() {
 
     private var _binding: ViewBinding? = null
+
+    /**
+     *     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+    get() = ActivityMainBinding::inflate
+     */
     abstract val bindingInflater: (LayoutInflater) -> T
 
     @Suppress("UNCHECKED_CAST")
