@@ -27,8 +27,9 @@ class ListNewsViewModel @Inject constructor(private val getTopHeadlineUseCase: G
             result.fold({ failure ->
                 when (failure) {
                     is Failure.ServerError -> {
-                        uiState.postValue(ListNewsState.Error("Server error"))
+                        uiState.postValue(ListNewsState.Error("Server Error"))
                     }
+                    else -> uiState.postValue(ListNewsState.Error("Unknown Error"))
                 }
 
             }, { result ->
