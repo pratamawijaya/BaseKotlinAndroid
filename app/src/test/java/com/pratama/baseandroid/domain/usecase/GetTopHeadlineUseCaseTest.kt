@@ -8,10 +8,10 @@ import com.pratama.baseandroid.domain.entity.NewsSource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -21,7 +21,10 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class GetTopHeadlineUseCaseTest {
 
+    @ExperimentalCoroutinesApi
     private val testDispatcher = TestCoroutineDispatcher()
+
+    @ExperimentalCoroutinesApi
     private val testScope = TestCoroutineScope(testDispatcher)
 
     @MockK
