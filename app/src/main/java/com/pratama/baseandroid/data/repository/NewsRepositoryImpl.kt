@@ -9,6 +9,7 @@ import com.pratama.baseandroid.data.datasource.local.NewsLocalDatasource
 import com.pratama.baseandroid.data.datasource.remote.NewsRemoteDatasource
 import com.pratama.baseandroid.data.datasource.remote.model.toNewsList
 import com.pratama.baseandroid.domain.entity.News
+import com.pratama.baseandroid.utility.ThreadInfoLogger
 import java.io.IOException
 import java.lang.Exception
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class NewsRepositoryImpl @Inject constructor(
             if (networkChecker.isNetworkConnected()) {
                 d { "connection : connect to internet" }
                 // connected to internet
+                ThreadInfoLogger.logThreadInfo("get top headlines repository")
                 val response = remote.getTopHeadlines(category = category, country = country)
 
                 local.insertNews(response)

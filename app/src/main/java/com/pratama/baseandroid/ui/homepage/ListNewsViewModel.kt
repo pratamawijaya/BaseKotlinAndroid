@@ -5,6 +5,7 @@ import com.pratama.baseandroid.coreandroid.BaseViewModel
 import com.pratama.baseandroid.coreandroid.exception.Failure
 import com.pratama.baseandroid.domain.entity.News
 import com.pratama.baseandroid.domain.usecase.GetTopHeadlineUseCase
+import com.pratama.baseandroid.utility.ThreadInfoLogger
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class ListNewsViewModel @Inject constructor(private val getTopHeadlineUseCase: G
         viewModelScope.launch {
             uiState.postValue(ListNewsState.Loading)
 
+            ThreadInfoLogger.logThreadInfo("get top headlines viewmodel")
             val result =
                 getTopHeadlineUseCase.run(GetTopHeadlineUseCase.TopHeadlineParam(country, category))
 

@@ -12,6 +12,7 @@ import com.pratama.baseandroid.databinding.FragmentListNewsBinding
 import com.pratama.baseandroid.domain.entity.News
 import com.pratama.baseandroid.domain.entity.toDto
 import com.pratama.baseandroid.ui.homepage.rvitem.NewsItem
+import com.pratama.baseandroid.utility.ThreadInfoLogger
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +49,7 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsIte
                     loadingIndicator.toGone()
                     swipeRefreshLayout.isRefreshing = false
 
+                    ThreadInfoLogger.logThreadInfo("show news viewmodel")
 
                     state.news.map {
                         d { "news loaded -> ${it.title}" }
