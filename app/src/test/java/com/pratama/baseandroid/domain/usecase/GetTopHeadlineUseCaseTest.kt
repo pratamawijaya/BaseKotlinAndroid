@@ -1,6 +1,5 @@
 package com.pratama.baseandroid.domain.usecase
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.pratama.baseandroid.coreandroid.exception.Failure
 import com.pratama.baseandroid.coreandroid.functional.Either
 import com.pratama.baseandroid.data.repository.NewsRepository
@@ -9,10 +8,12 @@ import com.pratama.baseandroid.domain.entity.NewsSource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.*
+import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -20,9 +21,8 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class GetTopHeadlineUseCaseTest {
 
-    @Rule
-    @JvmField
-    val instantExecutorRule = InstantTaskExecutorRule()
+    private val testDispatcher = TestCoroutineDispatcher()
+    private val testScope = TestCoroutineScope(testDispatcher)
 
     @MockK
     lateinit var newsRepo: NewsRepository
@@ -36,7 +36,7 @@ class GetTopHeadlineUseCaseTest {
     }
 
     @Test
-    fun `test usecaseRun return failure`() = runBlockingTest {
+    fun `test usecaseRun return failure`() {
         // given
         coEvery {
             newsRepo.getTopHeadlines(
@@ -47,13 +47,14 @@ class GetTopHeadlineUseCaseTest {
 
         val params = GetTopHeadlineUseCase.TopHeadlineParam(country = "us", category = "tech")
 
-        val result = useCase.run(params)
-
-        assertTrue(result.isLeft)
+        testScope.launch {
+            val result = useCase.run(params)
+            assertTrue(result.isLeft)
+        }
     }
 
     @Test
-    fun `test usecaseRun return value`() = runBlockingTest {
+    fun `test usecaseRun return value`() {
         // given
         coEvery {
             newsRepo.getTopHeadlines(
@@ -64,9 +65,10 @@ class GetTopHeadlineUseCaseTest {
 
         val params = GetTopHeadlineUseCase.TopHeadlineParam(country = "us", category = "tech")
 
-        val result = useCase.run(params)
-
-        assertTrue(result.isRight)
+        testScope.launch {
+            val result = useCase.run(params)
+            assertTrue(result.isRight)
+        }
     }
 
     private fun generateFailure(): Either<Failure, List<News>> {
