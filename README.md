@@ -6,7 +6,7 @@ MVVM Base Android Kotlin Project
 
 [![codecov](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid/branch/master/graph/badge.svg)](https://codecov.io/gh/pratamawijaya/BaseKotlinAndroid)
 
-![](ss/ss1.png)
+<img src="ss/ss1.png" width="250">
 
 ## Tech Stack
 - Kotlin
