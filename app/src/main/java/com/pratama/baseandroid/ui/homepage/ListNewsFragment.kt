@@ -56,6 +56,9 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsIte
                         listNewsAdapter.add(NewsItem(it, this@ListNewsFragment))
                     }
                 }
+                else ->{
+                    
+                }
             }
         })
     }

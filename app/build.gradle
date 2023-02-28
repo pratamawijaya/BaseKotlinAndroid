@@ -1,23 +1,19 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'kotlin-parcelize'
-apply plugin: "androidx.navigation.safeargs.kotlin"
-apply from: "$project.rootDir/config/jacoco.gradle"
-
-kapt { 
-    useBuildCache = true
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "kotlin-parcelize"
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 android {
-    compileSdkVersion AndroidConfig.compileSdkVersion
-    buildToolsVersion AndroidConfig.buildToolsVersion
 
     defaultConfig {
         applicationId "com.pratama.baseandroid"
-        minSdkVersion AndroidConfig.minSdkVersion
-        targetSdkVersion AndroidConfig.targetSdkVersion
+        minSdkVersion 21
+        compileSdkVersion 33
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -92,11 +88,16 @@ dependencies {
     implementation AndroidLib.hilt
     kapt AndroidLib.hilt_processor_compiler
 
-    def fragment_version = "1.2.5"
+    def fragment_version = "1.5.5"
 
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
-    testImplementation AndroidTestLib.junit_lib
+    testImplementation "junit.junit:4.13.2"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.'
+    androidTestImplementation "androidx.fragment:fragment-testing:1.4.1"
+    androidTestImplementation "androidx.test:core:1.4.0"
+
     testImplementation "io.mockk:mockk:$Versions.mockk"
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$Versions.coroutines")
