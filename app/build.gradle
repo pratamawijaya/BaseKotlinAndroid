@@ -52,9 +52,9 @@ dependencies {
     implementation project(":core-android")
     implementation project(":routing")
 
-    implementation AndroidLib.kotlin_stdlib
-    implementation AndroidLib.androidx_core
-    implementation AndroidLib.androidx_appcompat
+    implementation supportLibraries.kotlin_stdlib
+    implementation supportLibraries.core_ktx
+    implementation supportLibraries.appCompat
     implementation AndroidLib.androidx_constraintlayout
 
     implementation AndroidLib.retrofit_android

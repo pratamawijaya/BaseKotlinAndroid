@@ -1,0 +1,18 @@
+ext {
+    minSDK = 21
+    targetSDK = 33
+
+    gradle_tools = "7.2.2"
+    kotlinVersion = "1.7.21"
+    hiltVersion = "2.42"
+    android_navigation = "2.3.2"
+    coreKtxVersion = "1.9.0"
+    appCompatVersion ="1.6.1"
+
+
+    supportLibraries = [
+        kotlin_stdlib : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+        core_ktx : "androidx.core:core-ktx:${coreKtxVersion}",
+        appCompat: "androidx.appcompat:appcompat:${appCompatVersion}"
+    ]
+}
