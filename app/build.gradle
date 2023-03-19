@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.pratama.baseandroid"
-        minSdkVersion 21
+        minSdkVersion 22
         compileSdkVersion 33
         targetSdkVersion 33
         versionCode 1
