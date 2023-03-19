@@ -1,3 +1,5 @@
+includeBuild("plugins")
+
 include ':routing'
 include ':core-android'
 include ':app'
