@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Chmod
+        run: chmod +x gradlew
       - name: Run test & Coverage
         run: ./gradlew check testDebugUnitTestCoverage
       - name: Publish CodeCoverage
