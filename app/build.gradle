@@ -90,16 +90,12 @@ dependencies {
 
     def fragment_version = "1.5.5"
 
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-
-    testImplementation "junit.junit:4.12"
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.'
-    androidTestImplementation "androidx.fragment:fragment-testing:1.4.1"
-    androidTestImplementation "androidx.test:core:1.4.0"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation "io.mockk:mockk:$Versions.mockk"
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$Versions.coroutines")
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
 
 }

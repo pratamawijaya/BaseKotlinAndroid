@@ -26,10 +26,12 @@ jobs:
 
       - name: Build Debug Apk
         run: ./gradlew assembleDebug
-#      - name: Run test & Coverage
-#        run: ./gradlew check testDebugUnitTestCoverage
-#      - name: Publish CodeCoverage
-#        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
+      - name: Run test & Coverage
+        run: ./gradlew check jacocoTestReportDebug
+      - name: Merge Report
+        run: ./gradlew mergeJacocoReports && ./gradlew jacocoTestReportMerged
+      - name: Publish CodeCoverage
+        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
 #      - name: Upload APK
 #        uses: actions/upload-artifact@v1
 #        with:
