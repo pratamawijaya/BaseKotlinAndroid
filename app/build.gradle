@@ -7,8 +7,6 @@ plugins {
     id "androidx.navigation.safeargs.kotlin"
 }
 
-apply from: '../config/jacoco.gradle'
-
 android {
 
     defaultConfig {

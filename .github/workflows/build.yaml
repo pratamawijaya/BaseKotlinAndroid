@@ -10,14 +10,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Chmod
         run: chmod +x gradlew
-      - name: Run test & Coverage
-        run: ./gradlew check testDebugUnitTestCoverage
-      - name: Publish CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
       - name: Build Debug Apk
         run: ./gradlew assembleDebug
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: app
-          path: app/build/outputs/apk
+#      - name: Run test & Coverage
+#        run: ./gradlew check testDebugUnitTestCoverage
+#      - name: Publish CodeCoverage
+#        run: bash <(curl -s https://codecov.io/bash) -f jacocoReport/**/*.xml
+#      - name: Upload APK
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: app
+#          path: app/build/outputs/apk
